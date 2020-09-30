@@ -1,4 +1,5 @@
 
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -109,11 +110,39 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+              if(email == 'user1' && password == '123456'){
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+              }else{
+                print('Incorrect Username/Password');
+                showLoginFailed();
+              }
             },
           ),
         )
       ],
+    );
+  }
+
+  void showLoginFailed() async{
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: new Text('Status Login'),
+        content: Text('Login Failed', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          new FlatButton(
+            child: new Text("Done",style: TextStyle(color: Colors.green),),
+            onPressed: () async {
+//                      prefs.setString('money_week', money);
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
     );
   }
 

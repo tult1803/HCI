@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/home.dart';
-import 'package:football_manager/url.dart';
+import 'package:football_manager/url/url.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'login_page.dart';

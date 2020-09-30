@@ -1,7 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:football_manager/url.dart';
+import 'package:football_manager/url/url.dart';
+import 'package:football_manager/view/booking.dart';
+import 'package:football_manager/view/news.dart';
+import 'package:football_manager/view/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget{
@@ -12,22 +15,25 @@ class HomePage extends StatefulWidget{
 }
 
 class HomePageState extends State{
-  int _page = 0;
+  int _page = 1;
   GlobalKey _bottomNavigationKey = GlobalKey();
   Widget _widget;
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _widget = NewsPage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
-          index: 2,
+          index: 1,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.add, size: 30),
-            Icon(Icons.list, size: 30),
             Icon(Icons.compare_arrows, size: 30),
-            Icon(Icons.call_split, size: 30),
+            Icon(Icons.assignment, size: 30),
             Icon(Icons.perm_identity, size: 30),
           ],
           color: Colors.white,
@@ -40,9 +46,11 @@ class HomePageState extends State{
               _page = index;
               print('$index');
               if(index == 0){
-                _widget = add();
+                _widget = BookingPage();
               }else if(index == 1){
-                _widget = ABCadd();
+                _widget = NewsPage();
+              }else if(index == 2){
+                _widget = ProfilePage();
               }
             });
           },
@@ -51,78 +59,4 @@ class HomePageState extends State{
     );
   }
 
-  Widget add(){
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.fill,
-            image: AssetImage(url_imgbackground_welcome))
-      ),
-      child: Column(
-        children: [
-          SizedBox(height: 100,),
-          tintuc(),
-          tintuc(),tintuc(),tintuc()
-        ],
-      ),
-    );
-  }
-  Widget ABCadd(){
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(url_imgbackground_welcome))
-      ),
-    );
-  }
-  Widget tintuc(){
-    return Card(
-      margin: EdgeInsets.all(10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Container(
-          height: 100,
-          decoration: BoxDecoration(
-//                color: Colors.redAccent,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 80,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.new_releases),
-                    Padding(
-                      padding:  EdgeInsets.only(top:8.0),
-                      child: Text("20%", style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.red,
-                        fontWeight: FontWeight.w700,
-                      ),),
-                    )
-                  ],
-                ),
-              ),
-              Expanded(child: Container(
-//                    color: Colors.redAccent,
-//                  padding: EdgeInsets.only(left: 20),
-                child: ListTile(
-                  title: Text("Sân bóng ABC",style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),),
-                  subtitle: Text('12h - 3h',style: TextStyle(
-                    fontSize: 20,
-                  ),),
-                ),
-              ))
-            ],)
-      ),
-    );
-  }
 }
