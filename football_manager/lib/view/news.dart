@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -41,7 +41,8 @@ class _NewsPageState extends State<NewsPage> {
       child: Container(
           height: 100,
           decoration: BoxDecoration(
-//                color: Colors.redAccent,
+                color: Colors.white70,
+          border: Border.all(color: Colors.black54),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -52,15 +53,15 @@ class _NewsPageState extends State<NewsPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.new_releases),
-                    Padding(
-                      padding:  EdgeInsets.only(top:8.0),
-                      child: Text("$sale%", style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.red,
-                        fontWeight: FontWeight.w700,
-                      ),),
-                    )
+                    Icon(Icons.attach_money, size: 50, color: Colors.red,),
+//                    Padding(
+//                      padding:  EdgeInsets.only(top:8.0),
+//                      child: Text("$sale%", style: TextStyle(
+//                        fontSize: 20,
+//                        color: Colors.red,
+//                        fontWeight: FontWeight.w700,
+//                      ),),
+//                    )
                   ],
                 ),
               ),
@@ -76,7 +77,11 @@ class _NewsPageState extends State<NewsPage> {
                     fontSize: 20,
                   ),),
                 ),
-              ))
+              )),
+              Container(
+                width: 80,
+                child: Text('$sale%', style: GoogleFonts.zeyada(fontSize: 40, color: Colors.red, fontWeight: FontWeight.w600),),
+              )
             ],)
       ),
     );

@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget{
 }
 
 class HomePageState extends State{
+  Color color;
   int _page = 1;
   GlobalKey _bottomNavigationKey = GlobalKey();
   Widget _widget;
@@ -38,7 +39,7 @@ class HomePageState extends State{
           ],
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.green,
+          backgroundColor: color,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
@@ -46,10 +47,13 @@ class HomePageState extends State{
               _page = index;
               print('$index');
               if(index == 0){
+                color = Color.fromARGB(255, 107,147,79);
                 _widget = BookingPage();
               }else if(index == 1){
+                color = Color.fromARGB(255, 143,183,130);
                 _widget = NewsPage();
               }else if(index == 2){
+                color = Color.fromARGB(255, 30,69,22);
                 _widget = ProfilePage();
               }
             });

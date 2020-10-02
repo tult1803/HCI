@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:football_manager/home.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_page.dart';
 
@@ -25,10 +26,15 @@ class WelcomePageState extends State{
   }
 
   void _checkTime(){
-    timer = Timer.periodic(Duration(seconds: 3), (time)  {
+    timer = Timer.periodic(Duration(seconds: 3), (time)  async{
       if(count == 0){
         count = 1;
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+        final prefs = await SharedPreferences.getInstance();
+        if(prefs.get('checkLogin') == null || prefs.get('checkLogin') == 'false'){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+        }else{
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+        }
       }
     });
   }

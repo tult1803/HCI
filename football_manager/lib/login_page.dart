@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
 
@@ -109,8 +110,10 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: MediaQuery.of(context).size.height / 40,
               ),
             ),
-            onPressed: () {
+            onPressed: () async{
               if(email == 'user1' && password == '123456'){
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setString('checkLogin', 'true');
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
               }else{
                 print('Incorrect Username/Password');
@@ -136,7 +139,6 @@ class _LoginPageState extends State<LoginPage> {
           new FlatButton(
             child: new Text("Done",style: TextStyle(color: Colors.green),),
             onPressed: () async {
-//                      prefs.setString('money_week', money);
               Navigator.of(context).pop();
             },
           ),

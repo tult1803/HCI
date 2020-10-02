@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -35,7 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 60,
-                    child: Image.asset(''),
+                    backgroundColor: Colors.white,
+                    child: Image.asset('images/logo.png'),
                   ),
                   SizedBox(
                     width: 20,
@@ -149,7 +153,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                onPressed: () {},
+                onPressed: () async{
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('checkLogin', 'false');
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+                },
                 child: Text(
                   "Logout",
                   style: TextStyle(
@@ -174,19 +182,19 @@ class _ProfilePageState extends State<ProfilePage> {
               fit: BoxFit.fill,
               image: AssetImage(url_imgbackground_welcome))
       ),
-     child: SafeArea(
-       child: Stack(
-         children: <Widget>[
-           Container(
-             height: MediaQuery.of(context).size.height,
-             width: MediaQuery.of(context).size.width,
-           ),
-           _getInfo(),
-           _userAdress(),
-           _btnLogout(),
-         ],
-       ),
-     ),
+      child: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+            ),
+            _getInfo(),
+            _userAdress(),
+            _btnLogout(),
+          ],
+        ),
+      ),
     );
   }
 }
