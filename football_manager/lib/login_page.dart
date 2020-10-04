@@ -1,11 +1,10 @@
 
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
+import 'presenter/loginFire.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,6 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String email, password;
+
   Widget _buildLogo() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +170,15 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         GestureDetector(
-          onTap: () {},
+          onTap: () async{
+              final checkLogin = await signInWithGoogle();
+              if(checkLogin != null){
+                final prefs = await SharedPreferences.getInstance();
+              prefs.setString('checkLogin', 'true');
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+              }
+              print('CheckLogin: $checkLogin');
+            },
           child: Container(
             height: 60,
             width: 60,
@@ -185,8 +193,9 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             child: Icon(
-              FontAwesomeIcons.facebook,
+              FontAwesomeIcons.google,
               color: Colors.white,
+              size: 35,
             ),
           ),
         )
@@ -244,7 +253,8 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
@@ -270,6 +280,7 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -305,4 +316,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
+
 }

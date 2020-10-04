@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login_page.dart';
@@ -156,6 +157,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () async{
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString('checkLogin', 'false');
+                  await signOutGoogle();
                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
                 },
                 child: Text(
@@ -196,5 +198,13 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<void> signOutGoogle() async {
+    await _googleSignIn.signOut();
+
+    print("User Signed Out");
   }
 }
