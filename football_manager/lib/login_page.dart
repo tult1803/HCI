@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:football_manager/view/create_account.dart';
 import 'home.dart';
 import 'presenter/loginFire.dart';
+import 'package:football_manager/view/forgot_password_email.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -81,7 +82,9 @@ class _LoginPageState extends State<LoginPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => ForgotPassEmailPage()), (route) => false);
+          },
           child: Text("Forgot Password"),
         ),
       ],
@@ -254,6 +257,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
             onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => CreateAccountPage()), (route) => false);
             },
             child: RichText(
               text: TextSpan(children: [
