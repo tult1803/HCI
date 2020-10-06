@@ -24,6 +24,7 @@ class HomePageState extends State{
     // TODO: implement initState
     super.initState();
     _widget = NewsPage();
+    color = Color.fromARGB(255, 143,183,130);
   }
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,10 @@ class HomePageState extends State{
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
+            print('IndexTapped: $index');
             setState(() {
               _page = index;
-              print('$index');
+              print('Index: $_page');
               if(index == 0){
                 color = Color.fromARGB(255, 107,147,79);
                 _widget = BookingPage();

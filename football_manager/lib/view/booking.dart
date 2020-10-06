@@ -28,6 +28,10 @@ class _BookingPageState extends State<BookingPage> {
     _events = {
       _selectedDay.subtract(Duration(days: 0)): ['Sân bóng SWD', 'Sân bóng HCI', 'Sân bóng PRM'],
       _selectedDay.subtract(Duration(days: -1)): ['Sân bóng ACC', 'Sân bóng ISC'],
+      _selectedDay.subtract(Duration(days: -2)): ['Sân bóng SWD', 'Sân bóng ISC', 'Sân bóng HCI'],
+      _selectedDay.subtract(Duration(days: -3)): ['Sân bóng ACC', 'Sân bóng PRM', 'Sân bóng HCI', 'Sân bóng ISC'],
+      _selectedDay.subtract(Duration(days: -4)): ['Sân bóng SWD', 'Sân bóng HCI', 'Sân bóng PRM', 'Sân bóng ACC', 'Sân bóng ISC'],
+      _selectedDay.subtract(Duration(days: -5)): ['Sân bóng SWD', 'Sân bóng HCI', 'Sân bóng PRM', 'Sân bóng ACC', 'Sân bóng ISC'],
     };
 
     _selectedEvents = _events[_selectedDay] ?? [];
@@ -81,7 +85,6 @@ class _BookingPageState extends State<BookingPage> {
       day = '${days.day}-${days.weekday}-${days.year}';
       print('onDaySelected: $day');
     });
-    print('Day: $day');
   }
   Widget _buildEventList() {
     return ListView(
@@ -100,7 +103,6 @@ class _BookingPageState extends State<BookingPage> {
           subtitle: Text('Mở cửa: 8h - 22h', style: TextStyle(fontSize: 16,),),
           onTap: () {
             print('$event tapped!');
-
 //            Demo nhan tapped
             setState(() {
               tapped = event;

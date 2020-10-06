@@ -114,8 +114,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             onPressed: () async{
-              if(email == 'user1' && password == '123456'){
+              if(email.trim() == 'user1' && password.trim() == '123456'){
                 final prefs = await SharedPreferences.getInstance();
+                prefs.setString('displayName', 'Lý Gia Hân');
+                prefs.setString('email', 'lygiahan1001@gmail.com');
                 prefs.setString('checkLogin', 'true');
                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
               }else{

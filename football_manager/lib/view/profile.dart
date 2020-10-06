@@ -12,13 +12,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
+  String email ='', displayName = '';
   Widget _getInfo() {
     return Positioned(
       top: 25,
       child: Container(
         margin: const EdgeInsets.all(20),
-        height: 260,
+        height: 240,
         width: MediaQuery.of(context).size.width * 0.90,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -38,18 +38,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   CircleAvatar(
-                    radius: 60,
+                    radius: 50,
                     backgroundColor: Colors.white,
                     child: Image.asset('images/logo.png'),
                   ),
+                  Expanded(child: Center(child: Text("$displayName",overflow: TextOverflow.clip,))),
                   SizedBox(
                     width: 20,
                   ),
-                  Text("SS_Flutter"),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text("Dev"),
                 ],
               ),
               SizedBox(
@@ -62,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     width: 20,
                   ),
-                  Text("ssflutterdev@gmail.com")
+                  Expanded(child: Text("$email", overflow: TextOverflow.fade,))
                 ],
               ),
             ],
@@ -74,7 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _userAdress() {
     return Positioned(
-      top: 300,
+      top: 280,
       child: Container(
         margin: EdgeInsets.all(20),
         height: 200,
@@ -100,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text("Nongnioa village"),
+                  Expanded(child: Text("Lô E2a-7, Đường D1, Khu Công Nghệ Cao", overflow: TextOverflow.fade,)),
                 ],
               ),
               SizedBox(
@@ -113,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text("Sikhottabong district"),
+                  Text("Quận 9"),
                 ],
               ),
               SizedBox(
@@ -126,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text("Vietiane capital"),
+                  Text("TP. Hồ Chí Minh"),
                 ],
               ),
             ],
@@ -138,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _btnLogout() {
     return Positioned(
-      top: 435,
+      top: 420,
       child: Container(
         margin: EdgeInsets.all(100),
         child: Row(
@@ -174,6 +170,21 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getProfile();
+  }
+
+  void _getProfile() async{
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email');
+      displayName = prefs.getString('displayName');
+    });
   }
 
   @override
