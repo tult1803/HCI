@@ -1,7 +1,6 @@
-
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/login_page.dart';
-import 'package:football_manager/view/forgot_password_verify_code.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -9,8 +8,14 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
+  String email = '';
+  String name = '';
   String pass = '';
   String confirmPass = '';
+  String phone = '';
+  String address = '';
+
+  String err = '';
 
   Widget _buildLogo() {
     return Row(
@@ -38,7 +43,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
           setState(() {
-            pass = value;
+            email = value;
           });
         },
         decoration: InputDecoration(
@@ -46,7 +51,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Icons.email,
               color: Colors.green,
             ),
-            labelText: 'Email'),
+            labelText: 'Email (ex: abc@xyz.com)'),
       ),
     );
   }
@@ -58,7 +63,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
           setState(() {
-            pass = value;
+            name = value;
           });
         },
         decoration: InputDecoration(
@@ -75,10 +80,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     return Padding(
       padding: EdgeInsets.all(8),
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.phone,
         onChanged: (value) {
           setState(() {
-            pass = value;
+            phone = value;
           });
         },
         decoration: InputDecoration(
@@ -86,7 +91,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Icons.phone,
               color: Colors.green,
             ),
-            labelText: 'Phone number'),
+            labelText: 'Phone number (ex: 0123456789)'),
       ),
     );
   }
@@ -98,7 +103,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
           setState(() {
-            pass = value;
+            address = value;
           });
         },
         decoration: InputDecoration(
@@ -118,7 +123,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
           setState(() {
-            confirmPass = value;
+            pass = value;
           });
         },
         decoration: InputDecoration(
@@ -174,7 +179,25 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
             ),
             onPressed: () async{
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+              bool flag = true;
+              if (email == '' || name == '' || pass == '' || confirmPass == '' || phone == '' || address == '') {
+                flag = false;
+                err = 'Please input all information.';
+              } else if (!EmailValidator.validate(email)) {
+                flag = false;
+                err = 'Email must match correct format.';
+              } else if (pass != confirmPass) {
+                flag = false;
+                err = 'Password must match with Confirm Password.';
+              } else if (phone.length != 10){
+                flag = false;
+                err = 'Phone number must be 10 characters.';
+              }
+              if (flag) {
+                showSuccess();
+              } else {
+                showWrongInput(err);
+              }
             },
           ),
         )
@@ -213,20 +236,42 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     );
   }
 
-  void showWrongEmail() async{
+  void showWrongInput(String err) async{
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
           title: new Text('Validate Field'),
-          content: Text('Please input new password and confirm it', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
+          content: Text("$err", style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
               child: new Text("Done",style: TextStyle(color: Colors.green),),
               onPressed: () async {
                 Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showSuccess() async{
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text('Validate Field'),
+          content: Text('Create account successfully', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Done",style: TextStyle(color: Colors.green),),
+              onPressed: () async {
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
               },
             ),
           ],
