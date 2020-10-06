@@ -4,18 +4,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:football_manager/view/details_booking.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BookingPage extends StatefulWidget {
   @override
-  _BookingPageState createState() => _BookingPageState();
+  BookingPageState createState() => BookingPageState();
 }
 
-class _BookingPageState extends State<BookingPage> {
-
-  String tapped ='';
-
+class BookingPageState extends State<BookingPage> {
+  static String tapped ='';
   CalendarController _controller;
   Map<DateTime, List> _events;
   List _selectedEvents;
@@ -30,7 +29,7 @@ class _BookingPageState extends State<BookingPage> {
       _selectedDay.subtract(Duration(days: -1)): ['Sân bóng ACC', 'Sân bóng ISC'],
       _selectedDay.subtract(Duration(days: -2)): ['Sân bóng SWD', 'Sân bóng ISC', 'Sân bóng HCI'],
       _selectedDay.subtract(Duration(days: -3)): ['Sân bóng ACC', 'Sân bóng PRM', 'Sân bóng HCI', 'Sân bóng ISC'],
-      _selectedDay.subtract(Duration(days: -4)): ['Sân bóng SWD', 'Sân bóng HCI', 'Sân bóng PRM', 'Sân bóng ACC', 'Sân bóng ISC'],
+      _selectedDay.subtract(Duration(days: -4)): ['Sân bóng HCI', 'Sân bóng PRM', 'Sân bóng ACC', 'Sân bóng SWD', 'Sân bóng ISC'],
       _selectedDay.subtract(Duration(days: -5)): ['Sân bóng SWD', 'Sân bóng HCI', 'Sân bóng PRM', 'Sân bóng ACC', 'Sân bóng ISC'],
     };
 
@@ -70,9 +69,6 @@ class _BookingPageState extends State<BookingPage> {
             ),
             SizedBox(height: 10,),
             Expanded(child: _buildEventList()),
-
-            Text('$tapped', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),),
-
           ],
         ),
       ),
@@ -107,6 +103,8 @@ class _BookingPageState extends State<BookingPage> {
             setState(() {
               tapped = event;
             });
+
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsBooking()));
           }
         ),
       ))
