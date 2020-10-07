@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
-import 'package:football_manager/view/details_news.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewsPage extends StatefulWidget {
   @override
-  NewsPageState createState() => NewsPageState();
+  _NewsPageState createState() => _NewsPageState();
 }
 
-class NewsPageState extends State<NewsPage> {
-  static String tappedNews ='';
-  static String tappedTime ='';
-  static String tappedSales ='';
+class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,12 +47,7 @@ class NewsPageState extends State<NewsPage> {
           ),
           child:  FlatButton(
             onPressed: () {
-              setState(() {
-                tappedNews = soccer_field;
-                tappedTime = time;
-                tappedSales = sale.toString();
-              });
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsNews()));
+
             },
             child: Row(
               children: [

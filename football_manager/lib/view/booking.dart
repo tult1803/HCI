@@ -22,6 +22,8 @@ class BookingPageState extends State<BookingPage> {
   @override
   void initState() {
     super.initState();
+    DateTime dateTime = DateTime.now();
+    day = '${dateTime.day}-${dateTime.month}-${dateTime.year}';
     _controller = CalendarController();
     final _selectedDay = DateTime.now();
     _events = {
@@ -78,7 +80,7 @@ class BookingPageState extends State<BookingPage> {
   void _onDaySelected(DateTime days, List events) {
     setState(() {
       _selectedEvents = events; // cap nhat va show danh sách
-      day = '${days.day}-${days.weekday}-${days.year}';
+      day = '${days.day}-${days.month}-${days.year}';
       print('onDaySelected: $day');
     });
   }

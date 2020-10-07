@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
@@ -14,12 +13,13 @@ class DetailsBooking extends StatefulWidget {
 class _DetailsBookingState extends State<DetailsBooking> {
   Widget _widget;
   String tapped, days;
-  String address;
-  String phone;
+  String address, startTime ='', endTime='';
+  String phone, discount = '-----', discountCheck;
   String timeOpen;
   String admin;
   String price;
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
+  String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
   @override
   void initState() {
     // TODO: implement initState
@@ -203,7 +203,6 @@ class _DetailsBookingState extends State<DetailsBooking> {
               color: Colors.white70,
               child: Container(
                 width: size.width,
-                height: 400,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -217,18 +216,112 @@ class _DetailsBookingState extends State<DetailsBooking> {
                         ],
                       ),
                     ),
-                    FlatButton(
-                        onPressed: () {
-                          DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
-                            print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
-                          }, onConfirm: (date) {
-                            print('confirm $date');
-                          }, currentTime: DateTime.now());
-                        },
-                        child: Text(
-                          'show 12H time picker with AM/PM',
-                          style: TextStyle(color: Colors.blue),
-                        )),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        children: [
+                          Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                          Text('$startTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          Expanded(child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: IconButton(
+                                icon: Icon(Icons.timer_outlined, size: 25,),
+                                onPressed: () {
+                                  DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date) {
+                                    String  fDate= '$date';
+                                    print('Start Time ${fDate}');
+                                    setState(() {
+                                      startTime = '${fDate.substring(10, 16)}';
+                                    });
+                                  }, currentTime: DateTime.now());
+                                }),
+                          )),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, left: 20),
+                      child: Row(
+                        children: [
+                          Text('Giờ trả: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                          Text('$endTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          Expanded(child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: IconButton(
+                                icon: Icon(Icons.timer_off, size: 25,),
+                                onPressed: () {
+                                  DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date1) {
+                                    String  fDate= '$date1';
+                                    print('End Time ${fDate}');
+                                    setState(() {
+                                      endTime = '${fDate.substring(10, 16)}';
+                                    });
+                                  }, currentTime: DateTime.now());
+                                }),
+                          )),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0, left: 20),
+                      child: Row(
+                        children: [
+                          Text('Mã giảm giá: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                          Text('$discount', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          Expanded(child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: FlatButton(
+                                onPressed: () {
+                                  _inputDiscount();
+                                },
+                                child: Text('Nhập mã', style: TextStyle(color: Colors.blue),))
+                          )),
+                        ],
+                      ),
+                    ),
+
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Container(
+                          width: 200,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: FlatButton(
+                              height: 50,
+                            splashColor: Colors.white30,
+                            shape: RoundedRectangleBorder(borderRadius:  BorderRadius.circular(20)),
+                              onPressed: () {
+
+                              },
+                              child: Text('Xác nhận', style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.w700),)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+                          Expanded(
+                            child: Container(
+                              // margin: EdgeInsets.only(right: 5),
+                              // width: size.width * 0.67,
+                              child: Text('$noteB', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20,),
                   ],
                 ),
               )),
@@ -237,6 +330,78 @@ class _DetailsBookingState extends State<DetailsBooking> {
           ),
         ),
       ),
+    );
+  }
+
+  void _inputDiscount() async{
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("Mã giảm giá"),
+            content: Container(
+              height: 60,
+              child: _buildIDTF(),
+            ),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Done",style: TextStyle(color: Colors.green),),
+                onPressed: () async {
+                  setState(() {
+                    discount = discountCheck;
+                  });
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      ).then((val) {
+//            *** Code Here ***
+      });
+  }
+
+  Widget _buildIDTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                  Radius.circular(4)
+              ),
+              boxShadow: [BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0,-1),
+                  blurRadius: 0,
+                  spreadRadius: 0
+              )] ,
+              color: Colors.white
+          ),
+          height: 60.0,
+          child: TextField(
+            onChanged: (text1) {
+              setState(() {
+                 discountCheck = text1;
+                 print('discountCheck: $discountCheck');
+              });
+            },
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  Icons.monetization_on,
+                  color: Colors.blue,
+                ),
+                hintText: 'Nhập mã giảm giá....'
+            ),
+          ),
+        )
+      ],
     );
   }
 
