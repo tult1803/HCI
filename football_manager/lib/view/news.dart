@@ -45,15 +45,19 @@ class _NewsPageState extends State<NewsPage> {
           border: Border.all(color: Colors.black54),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Row(
-            children: [
-              Container(
-                width: 80,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.attach_money, size: 50, color: Colors.red,),
+          child:  FlatButton(
+            onPressed: () {
+
+            },
+            child: Row(
+              children: [
+                Container(
+                  width: 80,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.attach_money, size: 50, color: Colors.red,),
 //                    Padding(
 //                      padding:  EdgeInsets.only(top:8.0),
 //                      child: Text("$sale%", style: TextStyle(
@@ -62,27 +66,28 @@ class _NewsPageState extends State<NewsPage> {
 //                        fontWeight: FontWeight.w700,
 //                      ),),
 //                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(child: Container(
+                Expanded(child: Container(
 //                    color: Colors.redAccent,
 //                  padding: EdgeInsets.only(left: 20),
-                child: ListTile(
-                  title: Text("Sân bóng ${soccer_field}",style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),),
-                  subtitle: Text(time,style: TextStyle(
-                    fontSize: 20,
-                  ),),
-                ),
-              )),
-              Container(
-                width: 80,
-                child: Text('$sale%', style: GoogleFonts.zeyada(fontSize: 40, color: Colors.red, fontWeight: FontWeight.w600),),
-              )
-            ],)
+                  child: ListTile(
+                    title: Text("Sân bóng ${soccer_field}",style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),),
+                    subtitle: Text(time,style: TextStyle(
+                      fontSize: 20,
+                    ),),
+                  ),
+                )),
+                Container(
+                  width: 80,
+                  child: Text('$sale%', style: GoogleFonts.zeyada(fontSize: 40, color: Colors.red, fontWeight: FontWeight.w600),),
+                )
+              ],),
+          )
       ),
     );
   }

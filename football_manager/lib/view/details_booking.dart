@@ -13,11 +13,12 @@ class DetailsBooking extends StatefulWidget {
 
 class _DetailsBookingState extends State<DetailsBooking> {
   Widget _widget;
-  String tapped;
+  String tapped, days;
   String address;
   String phone;
   String timeOpen;
   String admin;
+  String price;
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   @override
   void initState() {
@@ -30,6 +31,12 @@ class _DetailsBookingState extends State<DetailsBooking> {
   void _getTapped(){
     setState(() {
       tapped = BookingPageState.tapped;
+     if(BookingPageState.day == ''){
+       DateTime dateTime = DateTime.now();
+       days = '${dateTime.day}-${dateTime.month}-${dateTime.year}';
+     }else {
+       days = BookingPageState.day;
+     }
     });
   }
 
@@ -40,6 +47,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
          phone = '0956721329';
          timeOpen = '8h - 22h';
          admin = 'A.Tú';
+         price = '130k';
          _widget = columSWD();
       });
     }else if(tapped == 'Sân bóng HCI'){
@@ -48,6 +56,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0906534119';
         timeOpen = '8h - 22h';
         admin = 'A.Tuấn';
+        price = '100k';
         _widget = columHCI();
       });
     }else if(tapped == 'Sân bóng PRM'){
@@ -56,6 +65,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0978999999';
         timeOpen = '8h - 22h';
         admin = 'A.Đạt';
+        price = '110k';
         _widget = columPRM();
       });
     }else if(tapped == 'Sân bóng ACC'){
@@ -64,6 +74,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0907777777';
         timeOpen = '8h - 22h';
         admin = 'A.Dũng';
+        price = '120k';
         _widget = columACC();
       });
     }else if(tapped == 'Sân bóng ISC'){
@@ -72,6 +83,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0901234567';
         timeOpen = '8h - 22h';
         admin = 'A.Nguyên';
+        price = '100k';
         _widget = columISC();
       });
     }
@@ -143,6 +155,46 @@ class _DetailsBookingState extends State<DetailsBooking> {
                            ],
                          ),
                        ),
+
+                       Padding(
+                         padding: const EdgeInsets.only(top: 10, left: 20),
+                         child: Row(
+                           children: [
+                             Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                             Text('$price/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                           ],
+                         ),
+                       ),
+
+                       Padding(
+                         padding: const EdgeInsets.only(top: 10, left: 20),
+                         child: Row(
+                           // mainAxisAlignment: MainAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                             Expanded(
+                                 child: Container(
+                                     child: _widget)),
+                           ],
+                         ),
+                       ),
+                       Padding(
+                         padding: const EdgeInsets.only(top: 10, left: 20),
+                         child: Row(
+                           // mainAxisAlignment: MainAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+                             Expanded(
+                               child: Container(
+                                 // margin: EdgeInsets.only(right: 5),
+                                 // width: size.width * 0.67,
+                                 child: Text('$note', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                             ),
+                           ],
+                         ),
+                       ),
                        SizedBox(height: 20,),
                      ],
                    ))),
@@ -153,37 +205,18 @@ class _DetailsBookingState extends State<DetailsBooking> {
                 width: size.width,
                 height: 400,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(child: Text('Đặt Sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
                     Padding(
                       padding: const EdgeInsets.only(top: 10, left: 20),
                       child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                          Expanded(
-                            child: Container(
-                              child: _widget)),
+                          Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                          Text('$days', style: TextStyle(fontSize: 20, color: Colors.black54),),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
-                          Expanded(
-                            child: Container(
-                              // margin: EdgeInsets.only(right: 5),
-                              // width: size.width * 0.67,
-                              child: Text('$note', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
-                          ),
-                        ],
-                      ),
-                    ),
-
                     FlatButton(
                         onPressed: () {
                           DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {

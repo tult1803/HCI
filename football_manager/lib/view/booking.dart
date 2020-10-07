@@ -18,7 +18,7 @@ class BookingPageState extends State<BookingPage> {
   CalendarController _controller;
   Map<DateTime, List> _events;
   List _selectedEvents;
-  String day = '';
+  static String day = '';
   @override
   void initState() {
     super.initState();
