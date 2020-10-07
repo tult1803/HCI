@@ -226,7 +226,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                           Expanded(child: Container(
                             alignment: Alignment.centerLeft,
                             child: IconButton(
-                                icon: Icon(Icons.timer_outlined, size: 25,),
+                                icon: Icon(Icons.timer, size: 25,),
                                 onPressed: () {
                                   DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date) {
                                     String  fDate= '$date';
@@ -294,7 +294,6 @@ class _DetailsBookingState extends State<DetailsBooking> {
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: FlatButton(
-                              height: 50,
                             splashColor: Colors.white30,
                             shape: RoundedRectangleBorder(borderRadius:  BorderRadius.circular(20)),
                               onPressed: () {
