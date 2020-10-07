@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/booking.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,11 +12,13 @@ class DetailsBooking extends StatefulWidget {
 }
 
 class _DetailsBookingState extends State<DetailsBooking> {
+  Widget _widget;
   String tapped;
   String address;
   String phone;
   String timeOpen;
   String admin;
+  String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   @override
   void initState() {
     // TODO: implement initState
@@ -37,6 +40,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
          phone = '0956721329';
          timeOpen = '8h - 22h';
          admin = 'A.Tú';
+         _widget = columSWD();
       });
     }else if(tapped == 'Sân bóng HCI'){
       setState(() {
@@ -44,6 +48,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0906534119';
         timeOpen = '8h - 22h';
         admin = 'A.Tuấn';
+        _widget = columHCI();
       });
     }else if(tapped == 'Sân bóng PRM'){
       setState(() {
@@ -51,6 +56,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0978999999';
         timeOpen = '8h - 22h';
         admin = 'A.Đạt';
+        _widget = columPRM();
       });
     }else if(tapped == 'Sân bóng ACC'){
       setState(() {
@@ -58,6 +64,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0907777777';
         timeOpen = '8h - 22h';
         admin = 'A.Dũng';
+        _widget = columACC();
       });
     }else if(tapped == 'Sân bóng ISC'){
       setState(() {
@@ -65,6 +72,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0901234567';
         timeOpen = '8h - 22h';
         admin = 'A.Nguyên';
+        _widget = columISC();
       });
     }
   }
@@ -112,12 +120,17 @@ class _DetailsBookingState extends State<DetailsBooking> {
                        ),
                        Padding(
                          padding: const EdgeInsets.only(top: 10, left: 20),
-                         child: Wrap(
+                         child: Row(
+                           // mainAxisAlignment: MainAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
                              Text('Địa chỉ: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Container(
-                               width: size.width * 0.7,
-                               child: Text('$address', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                             Expanded(
+                               child: Container(
+                                 // margin: EdgeInsets.only(right: 5),
+                                 // width: size.width * 0.67,
+                                 child: Text('$address', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                             ),
                            ],
                          ),
                        ),
@@ -139,12 +152,105 @@ class _DetailsBookingState extends State<DetailsBooking> {
               child: Container(
                 width: size.width,
                 height: 400,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                          Expanded(
+                            child: Container(
+                              child: _widget)),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+                          Expanded(
+                            child: Container(
+                              // margin: EdgeInsets.only(right: 5),
+                              // width: size.width * 0.67,
+                              child: Text('$note', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    FlatButton(
+                        onPressed: () {
+                          DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
+                            print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                          }, onConfirm: (date) {
+                            print('confirm $date');
+                          }, currentTime: DateTime.now());
+                        },
+                        child: Text(
+                          'show 12H time picker with AM/PM',
+                          style: TextStyle(color: Colors.blue),
+                        )),
+                  ],
+                ),
               )),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget columSWD(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+        Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+        Text('20h - 22h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+      ],
+    );
+  }
+
+  Widget columHCI(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+        Text('16h - 18h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+      ],
+    );
+  }
+  Widget columISC(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+        Text('18h - 20h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+      ],
+    );
+  }
+  Widget columPRM(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+        Text('21h - 22h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+      ],
+    );
+  }
+  Widget columACC(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('10h - 12h', style: TextStyle(fontSize: 20, color: Colors.redAccent, fontWeight: FontWeight.w600)),
+      ],
     );
   }
 }
