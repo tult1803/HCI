@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/booking.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsBooking extends StatefulWidget {
@@ -11,15 +12,17 @@ class DetailsBooking extends StatefulWidget {
 }
 
 class _DetailsBookingState extends State<DetailsBooking> {
-  int checkClickDiscount;
+  int checkClickDiscount, price;
+  double totalPrice;
+  DateTime _endTime;
   String btnDiscount, eror;
   Widget _widget;
   String tapped,  email, displayName, days;
   String address, startTime ='', endTime='';
   String phone, discount = '-----', discountCheck;
-  String timeOpen;
-  String admin;
-  String price, downPrice ='0';
+  String timeOpen, priceDiscount;
+  String admin, totalTimeHours, totalTime, totalTimeMinute;
+  String  downPrice ='0';
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
   @override
@@ -60,7 +63,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
          phone = '0956721329';
          timeOpen = '8h - 22h';
          admin = 'A.Tú';
-         price = '130k';
+         price = 130;
          _widget = columSWD();
       });
     }else if(tapped == 'Sân bóng HCI'){
@@ -69,7 +72,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0906534119';
         timeOpen = '8h - 22h';
         admin = 'A.Tuấn';
-        price = '100k';
+        price = 100;
         _widget = columHCI();
       });
     }else if(tapped == 'Sân bóng PRM'){
@@ -78,7 +81,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0978999999';
         timeOpen = '8h - 22h';
         admin = 'A.Đạt';
-        price = '110k';
+        price = 110;
         _widget = columPRM();
       });
     }else if(tapped == 'Sân bóng ACC'){
@@ -87,7 +90,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0907777777';
         timeOpen = '8h - 22h';
         admin = 'A.Dũng';
-        price = '120k';
+        price = 120;
         _widget = columACC();
       });
     }else if(tapped == 'Sân bóng ISC'){
@@ -96,7 +99,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
         phone = '0901234567';
         timeOpen = '8h - 22h';
         admin = 'A.Nguyên';
-        price = '100k';
+        price = 100;
         _widget = columISC();
       });
     }
@@ -174,7 +177,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                          child: Row(
                            children: [
                              Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Text('$price/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                             Text('${price}k/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
                            ],
                          ),
                        ),
@@ -270,6 +273,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                                     print('End Time ${fDate.substring(10, 16)}');
                                     setState(() {
                                       endTime = '${fDate.substring(10, 16)}';
+                                      _endTime = DateTime.parse(fDate);
                                     });
                                   }, currentTime: DateTime.now());
                                 }),
@@ -317,6 +321,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                             shape: RoundedRectangleBorder(borderRadius:  BorderRadius.circular(20)),
                               onPressed: () async{
                                 await _checkTime();
+
                               },
                               child: Text('Xác nhận', style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.w700),)),
                         ),
@@ -605,6 +610,28 @@ class _DetailsBookingState extends State<DetailsBooking> {
   }
 
   void _formCheckInfo() async{
+    int hourT = int.parse(startTime.substring(0,3));
+    int minuteT = int.parse(startTime.substring(4,6));
+    String totalT = '${_endTime.subtract( Duration(hours: hourT, minutes: minuteT))}';
+    int dowPrice = int.parse(downPrice);
+    double perPrice = dowPrice/100;
+    double mainTime, time2, time1, perPriceDown, mainPrice;
+    print("Main Discount:$perPrice");
+    setState(() {
+      totalTimeHours = "${totalT.substring(11,13)}";
+      time1 = double.parse(totalTimeHours);
+      totalTimeMinute = '${totalT.substring(14,16)}';
+      time2 = double.parse(totalTimeMinute);
+      mainTime = time1 + (time2/60);
+      print("Time chinh:$mainTime");
+      totalTime = '${totalTimeHours}h${totalTimeMinute}p';
+      perPriceDown = price * perPrice;
+      print("Giá được giảm:$perPriceDown");
+      mainPrice = price - perPriceDown;
+      print("Giá sau giảm:$mainPrice");
+      totalPrice = mainPrice * mainTime ;
+      print("Tổng tiền:$totalPrice");
+    });
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -631,9 +658,9 @@ class _DetailsBookingState extends State<DetailsBooking> {
                 Center(child: Text('--------------------'),),
                 SizedBox(height: 5,),
                 Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
-                _formPadding('Tổng giờ', '2'),
-                _formPadding('Giá sau giảm', '.../1h'),
-                _formPadding('Tổng tiền', '...'),
+                _formPadding('Tổng giờ', totalTime),
+                _formPadding('Giá sau giảm', '${mainPrice.toInt()}k/1h'),
+                _formPadding('Tổng tiền', '${totalPrice.toInt()}k'),
 
               ],
             )
@@ -641,7 +668,14 @@ class _DetailsBookingState extends State<DetailsBooking> {
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
-              child: new Text("Done",style: TextStyle(color: Colors.green),),
+              child: new Text("Huỷ",style: TextStyle(color: Colors.redAccent),),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            new FlatButton(
+              child: new Text("Xác nhận",style: TextStyle(color: Colors.green),),
               onPressed: () async {
                 Navigator.of(context).pop();
               },
