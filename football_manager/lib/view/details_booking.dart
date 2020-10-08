@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/booking.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsBooking extends StatefulWidget {
   @override
@@ -13,12 +14,12 @@ class _DetailsBookingState extends State<DetailsBooking> {
   int checkClickDiscount;
   String btnDiscount, eror;
   Widget _widget;
-  String tapped, days;
+  String tapped,  email, displayName, days;
   String address, startTime ='', endTime='';
   String phone, discount = '-----', discountCheck;
   String timeOpen;
   String admin;
-  String price;
+  String price, downPrice ='0';
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
   @override
@@ -27,8 +28,17 @@ class _DetailsBookingState extends State<DetailsBooking> {
     super.initState();
     checkClickDiscount = 0;
     btnDiscount = 'Nhập mã';
+    _getProfile();
     _getTapped();
     _checkTapped();
+  }
+
+  void _getProfile() async{
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email');
+      displayName = prefs.getString('displayName');
+    });
   }
 
   void _getTapped(){
@@ -531,7 +541,28 @@ class _DetailsBookingState extends State<DetailsBooking> {
              _showCheck("Giờ trả ngoài thời gian giảm giá .");
            }else{
              print('Code is available');
-             //****************
+             if(code == 'FBall0813'){
+               setState(() {
+                 downPrice = '20';
+               });
+             }else if(code == 'FBall1013'){
+               setState(() {
+                 downPrice = '25';
+               });
+             }else if(code == 'FBall2022'){
+               setState(() {
+                 downPrice = '50';
+               });
+             }else if(code == 'FBall1622'){
+               setState(() {
+                 downPrice = '30';
+               });
+             }else if(code == 'FBall1519'){
+               setState(() {
+                 downPrice = '10';
+               });
+             }
+             _formCheckInfo();
            }}
      }else{
        if(!_codeToCheck.contains(discount)){
@@ -540,7 +571,10 @@ class _DetailsBookingState extends State<DetailsBooking> {
          _showCheck("Sân không hỗ trợ mã giảm giá này");
        }
      }
-   }});
+   }else{
+     _formCheckInfo();
+   }
+    });
   }
 
   void _showCheck(String error) async{
@@ -570,5 +604,73 @@ class _DetailsBookingState extends State<DetailsBooking> {
     });
   }
 
+  void _formCheckInfo() async{
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        var size = MediaQuery.of(context).size;
+        // return object of type Dialog
+        return AlertDialog(
+          title: Center(child: new Text("Phiếu Xác Nhận" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
+          content: Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _formPadding('Tên', displayName),
+                _formPadding('Email', email),
+                _formPadding('SĐT', '0967566774'),
+                _formPadding('Sân', tapped),
+                _formPadding('Ngày đặt', days),
+                _formPadding('Giờ nhận sân', startTime),
+                _formPadding('Giờ trả sân', endTime),
+                _formPadding('Giá sân', '$price/1h'),
+                _formPadding('Giảm giá', '$downPrice%'),
+                SizedBox(height: 10,),
+                Center(child: Text('--------------------'),),
+                SizedBox(height: 5,),
+                Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
+                _formPadding('Tổng giờ', '2'),
+                _formPadding('Giá sau giảm', '.../1h'),
+                _formPadding('Tổng tiền', '...'),
+
+              ],
+            )
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Done",style: TextStyle(color: Colors.green),),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    ).then((val) {
+//            *** Code Here ***
+    });
+  }
+
+  Widget _formPadding(String txt, String subtxt){
+   return Padding(
+      padding: const EdgeInsets.only(top: 5, left: 0),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('$txt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+          Expanded(
+            child: Container(
+              // margin: EdgeInsets.only(right: 5),
+              // width: size.width * 0.67,
+              child: Text('$subtxt', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+          ),
+        ],
+      ),
+    );
+  }
   }
 
