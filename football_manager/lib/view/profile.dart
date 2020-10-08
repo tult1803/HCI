@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
       top: 280,
       child: Container(
         margin: EdgeInsets.all(20),
-        height: 200,
+        height: 215,
         width: MediaQuery.of(context).size.width * 0.90,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
@@ -85,6 +85,19 @@ class _ProfilePageState extends State<ProfilePage> {
               Text(
                 "User Address:",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("Phone:"),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(child: Text("0908000123", overflow: TextOverflow.fade,)),
+                ],
               ),
               SizedBox(
                 height: 20,
@@ -134,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _btnLogout() {
     return Positioned(
-      top: 420,
+      top: 450,
       child: Container(
         margin: EdgeInsets.all(100),
         child: Row(
