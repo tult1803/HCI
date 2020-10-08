@@ -4,14 +4,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
 Future<String> signInWithGoogle() async{
     await Firebase.initializeApp();
 
   final GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-
+  final GoogleSignInAuthentication googleSignInAuthentication = await  googleSignInAccount.authentication;
   final AuthCredential credential = GoogleAuthProvider.credential(
     accessToken: googleSignInAuthentication.accessToken,
     idToken: googleSignInAuthentication.idToken,

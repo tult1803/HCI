@@ -43,7 +43,7 @@ class _DetailsNewsState extends State<DetailsNews> {
         timeOpen = '8h - 22h';
         admin = 'A.Tú';
         price = '130k';
-        saleCode = 'SWD54653';
+        saleCode = 'FBall0813';
       });
     }else if(tappedNews == 'HCI'){
       setState(() {
@@ -52,7 +52,7 @@ class _DetailsNewsState extends State<DetailsNews> {
         timeOpen = '8h - 22h';
         admin = 'A.Tuấn';
         price = '100k';
-        saleCode = 'HCI56464';
+        saleCode = 'FBall1013';
       });
     }else if(tappedNews == 'PRM'){
       setState(() {
@@ -61,7 +61,7 @@ class _DetailsNewsState extends State<DetailsNews> {
         timeOpen = '8h - 22h';
         admin = 'A.Đạt';
         price = '110k';
-        saleCode = 'PRM89798';
+        saleCode = 'FBall2022';
       });
     }else if(tappedNews == 'ACC'){
       setState(() {
@@ -70,7 +70,7 @@ class _DetailsNewsState extends State<DetailsNews> {
         timeOpen = '8h - 22h';
         admin = 'A.Dũng';
         price = '120k';
-        saleCode = 'ACC85136';
+        saleCode = 'FBall1622';
       });
     }else if(tappedNews == 'ISC'){
       setState(() {
@@ -79,7 +79,7 @@ class _DetailsNewsState extends State<DetailsNews> {
         timeOpen = '8h - 22h';
         admin = 'A.Nguyên';
         price = '100k';
-        saleCode = 'ISC11121';
+        saleCode = 'FBall1519';
       });
     }
   }

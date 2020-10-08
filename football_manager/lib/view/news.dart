@@ -26,10 +26,9 @@ class NewsPageState extends State<NewsPage> {
             SizedBox(height: 10,),
             tintuc('8h - 13h','SWD', 20),
             tintuc('10h - 13h','HCI', 25),
-            tintuc('16h - 22h','ACC', 50),
-            tintuc('15h - 19h','ISC', 30),
-            tintuc('20h - 22h','PRM', 90),
-            tintuc('9h - 12h','ISC', 10),
+            tintuc('16h - 22h','ACC', 30),
+            tintuc('15h - 19h','ISC', 10),
+            tintuc('20h - 22h','PRM', 50),
           ],
         ),
       ),
@@ -93,7 +92,7 @@ class NewsPageState extends State<NewsPage> {
                 )),
                 Container(
                   width: 80,
-                  child: Text('$sale%', style: GoogleFonts.zeyada(fontSize: 40, color: Colors.red, fontWeight: FontWeight.w600),),
+                  child: Text('$sale%', style: GoogleFonts.zeyada(fontSize: 50, color: Colors.red, fontWeight: FontWeight.w600),),
                 )
               ],),
           )

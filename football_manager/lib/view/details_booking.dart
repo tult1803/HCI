@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
@@ -11,6 +10,8 @@ class DetailsBooking extends StatefulWidget {
 }
 
 class _DetailsBookingState extends State<DetailsBooking> {
+  int checkClickDiscount;
+  String btnDiscount, eror;
   Widget _widget;
   String tapped, days;
   String address, startTime ='', endTime='';
@@ -24,6 +25,8 @@ class _DetailsBookingState extends State<DetailsBooking> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkClickDiscount = 0;
+    btnDiscount = 'Nhập mã';
     _getTapped();
     _checkTapped();
   }
@@ -230,7 +233,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                                 onPressed: () {
                                   DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date) {
                                     String  fDate= '$date';
-                                    print('Start Time ${fDate}');
+                                    print('Start Time ${fDate.substring(10, 16)}');
                                     setState(() {
                                       startTime = '${fDate.substring(10, 16)}';
                                     });
@@ -254,7 +257,7 @@ class _DetailsBookingState extends State<DetailsBooking> {
                                 onPressed: () {
                                   DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date1) {
                                     String  fDate= '$date1';
-                                    print('End Time ${fDate}');
+                                    print('End Time ${fDate.substring(10, 16)}');
                                     setState(() {
                                       endTime = '${fDate.substring(10, 16)}';
                                     });
@@ -275,9 +278,15 @@ class _DetailsBookingState extends State<DetailsBooking> {
                             alignment: Alignment.centerLeft,
                             child: FlatButton(
                                 onPressed: () {
-                                  _inputDiscount();
+                                  setState(() {
+                                    if(checkClickDiscount == 0){
+                                      _inputDiscount();
+                                    }else{
+                                      _deleteDiscount();
+                                    }
+                                  });
                                 },
-                                child: Text('Nhập mã', style: TextStyle(color: Colors.blue),))
+                                child: Text( btnDiscount, style: TextStyle(color: Colors.blue),))
                           )),
                         ],
                       ),
@@ -296,8 +305,8 @@ class _DetailsBookingState extends State<DetailsBooking> {
                           child: FlatButton(
                             splashColor: Colors.white30,
                             shape: RoundedRectangleBorder(borderRadius:  BorderRadius.circular(20)),
-                              onPressed: () {
-
+                              onPressed: () async{
+                                await _checkTime();
                               },
                               child: Text('Xác nhận', style: TextStyle(color: Colors.white,fontSize: 28, fontWeight: FontWeight.w700),)),
                         ),
@@ -332,6 +341,15 @@ class _DetailsBookingState extends State<DetailsBooking> {
     );
   }
 
+
+  void _deleteDiscount(){
+    setState(() {
+      discount = '-----';
+      checkClickDiscount = 0;
+      btnDiscount = 'Nhập mã';
+    });
+  }
+
   void _inputDiscount() async{
       await showDialog(
         context: context,
@@ -350,6 +368,12 @@ class _DetailsBookingState extends State<DetailsBooking> {
                 onPressed: () async {
                   setState(() {
                     discount = discountCheck;
+                    setState(() {
+                      if(checkClickDiscount == 0){
+                        checkClickDiscount = 1;
+                        btnDiscount = 'Xoá mã';
+                      }
+                    });
                   });
                   Navigator.of(context).pop();
                 },
@@ -450,4 +474,101 @@ class _DetailsBookingState extends State<DetailsBooking> {
       ],
     );
   }
-}
+ void _checkTime(){
+   if(startTime.isEmpty || startTime == ''){
+     _showCheck("Giờ nhận trống !!!");
+   }else{
+     if(endTime.isEmpty || endTime ==''){
+       _showCheck("Giờ trả trống !!!");
+     }else{
+       String hStartTime = startTime.substring(0, 3).trim();
+       String hEndTime = endTime.substring(0, 3).trim();
+       int sTime = int.parse(hStartTime);
+       int eTime = int.parse(hEndTime);
+       if(sTime > eTime){
+         _showCheck("Giờ trả < Giờ nhận");
+       }else{
+         _checkTimeDiscount(hStartTime, hEndTime);
+       }
+     }
+   }
+ }
+
+  void _checkTimeDiscount(String hStartTime, String hEndTime){
+    String code;
+    String name = tapped.substring(9, 12);
+    List _listSWD = ['08','09','10','11','12','13'];
+    List _listHCI = ['10','11','12','13'];
+    List _listPRM = ['20','21','22'];
+    List _listACC = ['16','17','18','19','20','21','22'];
+    List _listISC = ['15','16','17','18','19'];
+    List _list;
+    List _codeToCheck = ['FBall0813', 'FBall1013', 'FBall2022', 'FBall1622', 'FBall1519'];
+    setState(() {
+      if(name == 'SWD'){
+        _list = _listSWD;
+        code = 'FBall0813';
+      }else if(name == 'HCI'){
+        _list = _listHCI;
+        code = 'FBall1013';
+      }else if(name == 'PRM'){
+        _list = _listPRM;
+        code = 'FBall2022';
+      }else if(name == 'ACC'){
+        _list = _listACC;
+        code = 'FBall1622';
+      }else if(name == 'ISC'){
+        _list = _listISC;
+        code = 'FBall1519';
+      }
+
+   if(discount != '-----' && discount != null && discount != ''){
+     if(discount == code){
+         if(!_list.contains(hStartTime) || hStartTime == _list.last){
+           _showCheck("Giờ nhận ngoài thời gian giảm giá .");
+         }else{
+           if(!_list.contains(hEndTime)){
+             _showCheck("Giờ trả ngoài thời gian giảm giá .");
+           }else{
+             print('Code is available');
+             //****************
+           }}
+     }else{
+       if(!_codeToCheck.contains(discount)){
+         _showCheck("Mã giảm giá sai.");
+       }else {
+         _showCheck("Sân không hỗ trợ mã giảm giá này");
+       }
+     }
+   }});
+  }
+
+  void _showCheck(String error) async{
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Thông báo" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.w800, fontSize: 25),),
+          content: Container(
+            height: 50,
+            child: Text('$error', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Done",style: TextStyle(color: Colors.green),),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    ).then((val) {
+//            *** Code Here ***
+    });
+  }
+
+  }
+

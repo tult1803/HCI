@@ -176,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         GestureDetector(
           onTap: () async{
-              final checkLogin = await signInWithGoogle();
+            final checkLogin = await  signInWithGoogle();
               if(checkLogin != null){
                 final prefs = await SharedPreferences.getInstance();
               prefs.setString('checkLogin', 'true');

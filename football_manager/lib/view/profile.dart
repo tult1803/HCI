@@ -153,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () async{
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString('checkLogin', 'false');
-                  await signOutGoogle();
+                   signOutGoogle();
                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
                 },
                 child: Text(
