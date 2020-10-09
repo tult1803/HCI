@@ -622,7 +622,9 @@ class _DetailsBookingState extends State<DetailsBooking> {
       time1 = double.parse(totalTimeHours);
       totalTimeMinute = '${totalT.substring(14,16)}';
       time2 = double.parse(totalTimeMinute);
-      mainTime = time1 + (time2/60);
+      if((time1 + (time2/60)) < 1){
+        mainTime = 1;
+      }else mainTime = time1 + (time2/60);
       print("Time chinh:$mainTime");
       totalTime = '${totalTimeHours}h${totalTimeMinute}p';
       perPriceDown = price * perPrice;
