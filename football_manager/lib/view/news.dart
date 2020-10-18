@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:football_manager/presenter/presenter_news.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/details_news.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,11 +13,29 @@ class NewsPage extends StatefulWidget {
 }
 
 class NewsPageState extends State<NewsPage> {
+  ScrollController controller = ScrollController();
+  bool closeTopContainer = false;
+  // final CategoriesScroller categoriesScroller = CategoriesScroller();
   static String tappedNews ='';
   static String tappedTime ='';
   static String tappedSales ='';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller.addListener(() {
+
+      double value = controller.offset/119;
+
+      setState(() {
+        closeTopContainer = controller.offset > 50;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    final double categoryHeight = size.height*0.30;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -49,20 +68,94 @@ class NewsPageState extends State<NewsPage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10,),
-                    Text('Tin tức & Khuyến mãi', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w700, decoration: TextDecoration.underline),),
+                    SizedBox(height: 20,),
                   ],
                 ),
               ),
               Expanded(
                 child: ListView(
                   children: [
-                    SizedBox(height: 5,),
-                    tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
-                    tintuc('10h - 13h','HCI', 25, 5, 5, 2),
-                    tintuc('16h - 22h','ACC', 30,3, 30, 6.3),
-                    tintuc('15h - 19h','ISC', 10, 4, 24, 5.5),
-                    tintuc('20h - 22h','PRM', 50, 3.5, 43, 8),
+                    // SizedBox(height: 10,),
+                    Container(
+                        padding: EdgeInsets.only(left: 25),
+                        alignment: Alignment.centerLeft,
+                        child: Text('Đang giảm giá', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                    ),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 200),
+                      opacity: closeTopContainer?0:1,
+                      child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: size.width,
+                          alignment: Alignment.topCenter,
+                          height: closeTopContainer?0: (categoryHeight - 40),
+                          child: CategoriesScroller1(context, 'Sân bóng HCI', '5.0', '0906534119 (A.Tuấn)', 100, 'Sân bóng SWD', '4.5', '0956721329 (A.Tú)', 130,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
+                    ),
+                    Container(
+                        padding: EdgeInsets.only(left: 25),
+                        alignment: Alignment.centerLeft,
+                        child: Text('Yêu thích nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                    ),
+                    // SizedBox(height: 5,),
+                    // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
+                    // tintuc('10h - 13h','HCI', 25, 5, 5, 2),
+                    // tintuc('16h - 22h','ACC', 30,3, 30, 6.3),
+                    // tintuc('15h - 19h','ISC', 10, 4, 24, 5.5),
+                    // tintuc('20h - 22h','PRM', 50, 3.5, 43, 8),
+                       AnimatedOpacity(
+                        duration: const Duration(milliseconds: 200),
+                        opacity: closeTopContainer?0:1,
+                        child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: size.width,
+                            alignment: Alignment.topCenter,
+                            height: closeTopContainer?0: (categoryHeight - 40),
+                            child: CategoriesScroller(context, 'Sân bóng HCI', '5.0', '0906534119 (A.Tuấn)', 100, 'Sân bóng SWD', '4.5', '0956721329 (A.Tú)', 130,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
+                      ),
+
+                    Container(
+                        padding: EdgeInsets.only(left: 25),
+                        alignment: Alignment.centerLeft,
+                        child: Text('Gần nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                    ),
+                    // SizedBox(height: 5,),
+                    // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
+                    // tintuc('10h - 13h','HCI', 25, 5, 5, 2),
+                    // tintuc('16h - 22h','ACC', 30,3, 30, 6.3),
+                    // tintuc('15h - 19h','ISC', 10, 4, 24, 5.5),
+                    // tintuc('20h - 22h','PRM', 50, 3.5, 43, 8),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 200),
+                      opacity: closeTopContainer?0:1,
+                      child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: size.width,
+                          alignment: Alignment.topCenter,
+                          height: closeTopContainer?0:(categoryHeight - 40),
+                          child: CategoriesScroller(context, 'Sân bóng ACC', '5.0', '0907777777 (A.Dũng)', 120, 'Sân bóng ISC', '4.5', '0901234567 (A.Nguyên)', 100,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
+                    ),
+
+                    Container(
+                        padding: EdgeInsets.only(left: 25),
+                        alignment: Alignment.centerLeft,
+                        child: Text('Giá tốt nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                    ),
+                    // SizedBox(height: 5,),
+                    // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
+                    // tintuc('10h - 13h','HCI', 25, 5, 5, 2),
+                    // tintuc('16h - 22h','ACC', 30,3, 30, 6.3),
+                    // tintuc('15h - 19h','ISC', 10, 4, 24, 5.5),
+                    // tintuc('20h - 22h','PRM', 50, 3.5, 43, 8),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 200),
+                      opacity: closeTopContainer?0:1,
+                      child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: size.width,
+                          alignment: Alignment.topCenter,
+                          height: closeTopContainer?0:(categoryHeight - 40),
+                          child: CategoriesScroller(context, 'Sân bóng PRM', '3.5', '0978999999 (A.Đạt)', 100, 'Sân bóng SWD', '4.5', '0956721329 (A.Tú)', 130,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
+                    ),
                   ],
                 ),
               ),

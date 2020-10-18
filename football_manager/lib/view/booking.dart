@@ -100,7 +100,7 @@ class BookingPageState extends State<BookingPage> {
           title: Row(
             children: [
               Text(event.toString(), style: GoogleFonts.yrsa(fontSize: 27, fontWeight: FontWeight.w500),),
-              Icon(Icons.star ,color: Colors.black,),
+              Icon(Icons.star_border ,color: Colors.black,),
             ],
           ),
           subtitle: Column(
@@ -125,6 +125,7 @@ class BookingPageState extends State<BookingPage> {
             print('$event tapped!');
 //            Demo nhan tapped
             setState(() {
+              DetailsBookingState.downPrice = '0';
               tapped = event;
             });
 
