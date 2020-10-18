@@ -18,7 +18,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(
                   // image: DecorationImage(
                   //   image: AssetImage('images/logo.png'),
@@ -29,7 +29,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsBooking()));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -100,7 +100,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Container(
                 child: Padding(
@@ -175,7 +175,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -254,7 +254,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
 }
 
 Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p1, int price1,String s2, String ss2, String p2, int price2, String s3, String ss3, String p3, int price3){
-  final double categoryHeight = MediaQuery.of(context).size.height * 0.30 - 50;
+  // final double categoryHeight = MediaQuery.of(context).size.height * 0.30 - 50;
   return SingleChildScrollView(
     // physics: BouncingScrollPhysics(),
     scrollDirection: Axis.horizontal,
@@ -268,7 +268,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: FlatButton(
                 onPressed: () async{
@@ -276,7 +276,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsBooking()));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -352,7 +352,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Container(
                 child: Padding(
@@ -432,7 +432,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
             Container(
               width: 300,
               margin: EdgeInsets.only(right: 20),
-              height: categoryHeight - 15,
+              // height: categoryHeight - 15,
               decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),

@@ -695,51 +695,54 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
       builder: (BuildContext context) {
         var size = MediaQuery.of(context).size;
         // return object of type Dialog
-        return AlertDialog(
-          title: Center(child: new Text("Phiếu Xác Nhận" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
-          content: Container(
-              height: size.height,
-              width: size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _formPadding('Tên', displayName),
-                  _formPadding('Email', email),
-                  _formPadding('SĐT', '0967566774'),
-                  _formPadding('Sân', tapped.substring(0, 13).trim()),
-                  _formPadding('Ngày đặt', days),
-                  _formPadding('Giờ nhận sân', startTime),
-                  _formPadding('Giờ trả sân', endTime),
-                  _formPadding('Giá sân', '$price/1h'),
-                  _formPadding('Giảm giá', '$downPrice%'),
-                  SizedBox(height: 10,),
-                  Center(child: Text('--------------------'),),
-                  SizedBox(height: 5,),
-                  Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
-                  _formPadding('PTTT ', pttt),
-                  _formPadding('Tổng giờ', totalTime),
-                  _formPadding('Giá sau giảm', '${mainPrice.toInt()}k/1h'),
-                  _formPadding('Tổng tiền', '${totalPrice.toInt()}k'),
+        return  FittedBox(
+          fit: BoxFit.fill,
+          child: AlertDialog(
+            title: Center(child: new Text("Phiếu Xác Nhận" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
+            content: Container(
+                // height: size.height,
+                // width: size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _formPadding('Tên', displayName),
+                    _formPadding('Email', email),
+                    _formPadding('SĐT', '0967566774'),
+                    _formPadding('Sân', tapped.substring(0, 13).trim()),
+                    _formPadding('Ngày đặt', days),
+                    _formPadding('Giờ nhận sân', startTime),
+                    _formPadding('Giờ trả sân', endTime),
+                    _formPadding('Giá sân', '$price/1h'),
+                    _formPadding('Giảm giá', '$downPrice%'),
+                    SizedBox(height: 10,),
+                    Center(child: Text('--------------------'),),
+                    SizedBox(height: 5,),
+                    Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
+                    _formPadding('PTTT ', pttt),
+                    _formPadding('Tổng giờ', totalTime),
+                    _formPadding('Giá sau giảm', '${mainPrice.toInt()}k/1h'),
+                    _formPadding('Tổng tiền', '${totalPrice.toInt()}k'),
 
-                ],
-              )
+                  ],
+                )
+            ),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Huỷ",style: TextStyle(color: Colors.redAccent),),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                },
+              ),
+
+              new FlatButton(
+                child: new Text("Xác nhận",style: TextStyle(color: Colors.green),),
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
           ),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Huỷ",style: TextStyle(color: Colors.redAccent),),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-
-            new FlatButton(
-              child: new Text("Xác nhận",style: TextStyle(color: Colors.green),),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
         );
       },
     ).then((val) {
