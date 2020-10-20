@@ -1,7 +1,4 @@
 
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/details_booking.dart';
@@ -46,35 +43,43 @@ class BookingPageState extends State<BookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(url_imgbackground_welcome))
-      ),
-      child: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.white70,
-              child: TableCalendar(
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                initialCalendarFormat: CalendarFormat.week,
-                calendarController: _controller,
-                events: _events,
-                onDaySelected: _onDaySelected,
-                calendarStyle: CalendarStyle(
-                  todayColor: Colors.lightGreen,
-                  selectedColor: Theme.of(context).primaryColor,
+    var size = MediaQuery.of(context).size;
+    return  Container(
+      height: size.height,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(url_imgbackground_welcome))
+        ),
+        child: Scaffold(
+        appBar: AppBar(
+    title: Text('Lịch đặt sân'),
+    backgroundColor: Colors.white10,
+    ),
+    backgroundColor: Colors.white10,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.white70,
+                child: TableCalendar(
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  initialCalendarFormat: CalendarFormat.week,
+                  calendarController: _controller,
+                  events: _events,
+                  onDaySelected: _onDaySelected,
+                  calendarStyle: CalendarStyle(
+                    todayColor: Colors.lightGreen,
+                    selectedColor: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            Expanded(child: _buildEventList()),
-          ],
+              SizedBox(height: 10,),
+              Expanded(child: _buildEventList()),
+            ],
+          ),
         ),
-      ),
-    );
+    ));
   }
 
   void _onDaySelected(DateTime days, List events) {
@@ -100,7 +105,7 @@ class BookingPageState extends State<BookingPage> {
           title: Row(
             children: [
               Text(event.toString(), style: GoogleFonts.yrsa(fontSize: 27, fontWeight: FontWeight.w500),),
-              Icon(Icons.star_border ,color: Colors.black,),
+              Icon(Icons.star ,color: Colors.amber,),
             ],
           ),
           subtitle: Column(

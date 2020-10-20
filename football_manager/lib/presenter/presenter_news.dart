@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:football_manager/view/details_booking.dart';
 import 'package:football_manager/view/final_details_booking.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1, int price1,String s2, String ss2, String p2, int price2, String s3, String ss3, String p3, int price3){
   final double categoryHeight = MediaQuery.of(context).size.height * 0.30 - 50;
@@ -38,11 +39,11 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                           Expanded(
                             child: Text(
                               "$s1",
-                              style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text('$ss1', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                          Icon(Icons.star_border, size: 30,),
+                          Icon(Icons.star, size: 30, color: Colors.amber,),
                         ],
                       ),
                       SizedBox(
@@ -75,7 +76,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                         height: 10,
                       ),
                       Text(
-                        "Sức chứa: 16",
+                        "Loại sân: Sân 7",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(
@@ -113,11 +114,11 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                           Expanded(
                             child: Text(
                               "$s2",
-                              style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text('$ss2', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                          Icon(Icons.star_border, size: 30,),
+                          Icon(Icons.star, size: 30, color: Colors.amber,),
                         ],
                       ),
                       SizedBox(
@@ -150,7 +151,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                         height: 10,
                       ),
                       Text(
-                        "Sức chứa: 16",
+                        "Loại sân: Sân 5",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(
@@ -187,11 +188,11 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                         Expanded(
                           child: Text(
                             "$s3",
-                            style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text('$ss3', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                        Icon(Icons.star_border, size: 30,),
+                        Icon(Icons.star, size: 30, color: Colors.amber,),
                       ],
                     ),
                     SizedBox(
@@ -224,7 +225,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                       height: 10,
                     ),
                     Text(
-                      "Sức chứa: 16",
+                      "Loại sân: Sân 5",
                       style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                     SizedBox(
@@ -285,11 +286,11 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Expanded(
                             child: Text(
                               "$s1",
-                              style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text('$ss1', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                          Icon(Icons.star_border, size: 30,),
+                          Icon(Icons.star, size: 30, color: Colors.amber,),
                         ],
                       ),
                       SizedBox(
@@ -318,7 +319,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Row(
                             children: [
                               Text('${price1}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54, decoration: TextDecoration.lineThrough	), ),
-                              Text(' ${80}k/1h', style: TextStyle(fontSize: 16, color: Colors.black, decoration: TextDecoration.none	), ),
+                              Text('    ${80}k/1h', style: GoogleFonts.aladin(fontSize: 20, color: Colors.black, decoration: TextDecoration.none	), ),
                             ],
                           ),
                         ],
@@ -327,7 +328,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                         height: 10,
                       ),
                       Text(
-                        "Sức chứa: 16",
+                        "Loại sân: Sân 7",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(
@@ -365,11 +366,11 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Expanded(
                             child: Text(
                               "$s2",
-                              style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Text('$ss2', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                          Icon(Icons.star_border, size: 30,),
+                          Icon(Icons.star, size: 30, color: Colors.amber,),
                         ],
                       ),
                       SizedBox(
@@ -398,7 +399,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Row(
                             children: [
                               Text('${price2}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54,decoration: TextDecoration.lineThrough),),
-                              Text(' ${price2 - 30}k/1h', style: TextStyle(fontSize: 16, color: Colors.black,decoration: TextDecoration.none),),
+                              Text('     ${price2 - 30}k/1h', style: GoogleFonts.aladin(fontSize: 20, color: Colors.black,decoration: TextDecoration.none),),
                             ],
                           ),
                         ],
@@ -407,7 +408,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                         height: 10,
                       ),
                       Text(
-                        "Sức chứa: 16",
+                        "Loại sân: Sân 5",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(
@@ -444,11 +445,11 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                         Expanded(
                           child: Text(
                             "$s3",
-                            style: TextStyle(fontSize: 25, color: Colors.black87, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text('$ss3', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
-                        Icon(Icons.star_border, size: 30,),
+                        Icon(Icons.star, size: 30, color: Colors.amber,),
                       ],
                     ),
                     SizedBox(
@@ -477,7 +478,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                         Row(
                           children: [
                             Text('${price3}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54,decoration: TextDecoration.lineThrough	),),
-                            Text('  ${price3 - 10}k/1h', style: TextStyle(fontSize: 16, color: Colors.black,decoration: TextDecoration.none	),),
+                            Text('      ${price3 - 20}k/1h', style: GoogleFonts.aladin(fontSize: 20, color: Colors.black,decoration: TextDecoration.none	),),
                           ],
                         ),
 
@@ -488,7 +489,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                       height: 10,
                     ),
                     Text(
-                      "Sức chứa: 16",
+                      "Loại sân: Sân 7",
                       style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                     SizedBox(

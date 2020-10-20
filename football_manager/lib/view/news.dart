@@ -7,6 +7,8 @@ import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/details_news.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'booking.dart';
+
 class NewsPage extends StatefulWidget {
   @override
   NewsPageState createState() => NewsPageState();
@@ -79,7 +81,7 @@ class NewsPageState extends State<NewsPage> {
                     Container(
                         padding: EdgeInsets.only(left: 25),
                         alignment: Alignment.centerLeft,
-                        child: Text('Đang giảm giá', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                        child: Text('Giá tốt nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Color.fromARGB(255, 23, 22, 22)),)
                     ),
                     AnimatedOpacity(
                       duration: const Duration(milliseconds: 200),
@@ -94,7 +96,7 @@ class NewsPageState extends State<NewsPage> {
                     Container(
                         padding: EdgeInsets.only(left: 25),
                         alignment: Alignment.centerLeft,
-                        child: Text('Yêu thích nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                        child: Text('Đánh giá cao', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Color.fromARGB(255, 23, 22, 22)),)
                     ),
                     // SizedBox(height: 5,),
                     // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
@@ -116,7 +118,7 @@ class NewsPageState extends State<NewsPage> {
                     Container(
                         padding: EdgeInsets.only(left: 25),
                         alignment: Alignment.centerLeft,
-                        child: Text('Gần nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
+                        child: Text('Gần nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Color.fromARGB(255, 23, 22, 22)),)
                     ),
                     // SizedBox(height: 5,),
                     // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
@@ -133,28 +135,6 @@ class NewsPageState extends State<NewsPage> {
                           alignment: Alignment.topCenter,
                           height: closeTopContainer?0:(categoryHeight - 40),
                           child: CategoriesScroller(context, 'Sân bóng ACC', '5.0', '0907777777 (A.Dũng)', 120, 'Sân bóng ISC', '4.5', '0901234567 (A.Nguyên)', 100,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
-                    ),
-
-                    Container(
-                        padding: EdgeInsets.only(left: 25),
-                        alignment: Alignment.centerLeft,
-                        child: Text('Giá tốt nhất', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700, decoration: TextDecoration.underline, color: Colors.black87),)
-                    ),
-                    // SizedBox(height: 5,),
-                    // tintuc('8h - 13h','SWD', 20, 4.5, 15, 4.5),
-                    // tintuc('10h - 13h','HCI', 25, 5, 5, 2),
-                    // tintuc('16h - 22h','ACC', 30,3, 30, 6.3),
-                    // tintuc('15h - 19h','ISC', 10, 4, 24, 5.5),
-                    // tintuc('20h - 22h','PRM', 50, 3.5, 43, 8),
-                    AnimatedOpacity(
-                      duration: const Duration(milliseconds: 200),
-                      opacity: closeTopContainer?0:1,
-                      child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          width: size.width,
-                          alignment: Alignment.topCenter,
-                          height: closeTopContainer?0:(categoryHeight - 40),
-                          child: CategoriesScroller(context, 'Sân bóng PRM', '3.5', '0978999999 (A.Đạt)', 100, 'Sân bóng SWD', '4.5', '0956721329 (A.Tú)', 130,'Sân bóng PRM', '3.5', '0978999999(A.Đạt)', 110)),
                     ),
                   ],
                 ),
@@ -180,7 +160,7 @@ class NewsPageState extends State<NewsPage> {
         child: FlatButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           onPressed: () {
-
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookingPage()));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

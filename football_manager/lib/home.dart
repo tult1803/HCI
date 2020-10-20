@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/booking.dart';
+import 'package:football_manager/view/history_booking.dart';
 import 'package:football_manager/view/news.dart';
 import 'package:football_manager/view/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,7 +35,7 @@ class HomePageState extends State{
           index: 1,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.compare_arrows, size: 30),
+            Icon(Icons.my_library_books_outlined, size: 30),
             Icon(Icons.assignment, size: 30),
             Icon(Icons.perm_identity, size: 30),
           ],
@@ -50,7 +51,7 @@ class HomePageState extends State{
               print('Index: $_page');
               if(index == 0){
                 color = Color.fromARGB(255, 107,147,79);
-                _widget = BookingPage();
+                _widget = HistoryBookingPage();
               }else if(index == 1){
                 color = Color.fromARGB(255, 143,183,130);
                 _widget = NewsPage();

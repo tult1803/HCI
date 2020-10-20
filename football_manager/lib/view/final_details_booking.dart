@@ -14,6 +14,7 @@ class FinalDetailsBooking extends StatefulWidget {
 enum SingingCharacter { money, momo, atm }
 
 class FinalDetailsBookingState extends State<FinalDetailsBooking> {
+  DateTime pickedDate;
   SingingCharacter character = SingingCharacter.money;
   int checkClickDiscount, price;
   double totalPrice;
@@ -29,12 +30,28 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   static String  downPrice ='0';
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
+
+  _pickedDate() async{
+    DateTime date = await showDatePicker(
+      context: context,
+      initialDate: pickedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(DateTime.now().year + 5),
+    );
+      if(date != null){
+        setState(() {
+        pickedDate = date;
+        });
+      }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // demo = '${DateTime.now().subtract(Duration(hours: -1))}';
     demo = '${DateTime.now()}';
+    pickedDate = DateTime.now();
     checkClickDiscount = 0;
     startTime = ' ${demo.substring(11, 16).trim()}';
     btnDiscount = 'Nhập mã';
@@ -137,7 +154,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                 Card(
                   color: Colors.white70,
                   child:Column(children: [
-                    Center(child: Text('Sân bận', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                    Center(child: Text('Lịch đặt sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
                     Padding(
                       padding: const EdgeInsets.only(top: 10, left: 20),
                       child: Row(
@@ -181,17 +198,27 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                         children: [
                           Center(child: Text('Đặt Sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
                           Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20),
+                            padding: const EdgeInsets.only(top: 0, left:20),
                             child: Row(
                               children: [
                                 Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
                                 Text('$days', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                              ],
+                                Expanded(child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: IconButton(
+                                      icon: Icon(Icons.date_range, size: 25,),
+                                      onPressed: () async{
+                                        await _pickedDate();
+                                        print("Picked Date: ${DateFormat('dd-MM-yyyy').format(pickedDate)}");
+                                        setState(() {
+                                          days = '${DateFormat('dd-MM-yyyy').format(pickedDate)}';
+                                        });
+                                      }))),],
                             ),
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20),
+                            padding: const EdgeInsets.only(top: 0, left: 20),
                             child: Row(
                               children: [
                                 Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
@@ -757,7 +784,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('$txt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+          Text('$txt: ', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 23, 22, 22), fontWeight: FontWeight.w500),),
           Expanded(
             child: Container(
               // margin: EdgeInsets.only(right: 5),

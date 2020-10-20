@@ -145,7 +145,7 @@ class DetailsBookingState extends State<DetailsBooking> {
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
                              Text('${tapped}', style: GoogleFonts.alice(fontSize: 28, fontWeight: FontWeight.w600),),
-                             Icon(Icons.star ,color: Colors.black,),
+                             Icon(Icons.star ,color: Colors.amber,),
                            ],
                          )),
                        ),
@@ -175,17 +175,17 @@ class DetailsBookingState extends State<DetailsBooking> {
                          ),
                        ),
 
-                       Padding(
-                         padding: const EdgeInsets.only(top: 10, left: 20),
-                         child: Row(
-                           children: [
-                             Text('Khoản cách: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Text('4km (', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                             Icon(Icons.watch_later_outlined, size: 15,),
-                             Text('15p)', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                           ],
-                         ),
-                       ),
+                       // Padding(
+                       //   padding: const EdgeInsets.only(top: 10, left: 20),
+                       //   child: Row(
+                       //     children: [
+                       //       Text('Khoảng cách: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                       //       Text('4km (', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                       //       Icon(Icons.watch_later_outlined, size: 15,),
+                       //       Text('15p)', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                       //     ],
+                       //   ),
+                       // ),
 
                        Padding(
                          padding: const EdgeInsets.only(top: 10, left: 20),
@@ -203,12 +203,11 @@ class DetailsBookingState extends State<DetailsBooking> {
                              child: Column(
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.only(top: 10, left: 20),
+                                   padding: const EdgeInsets.only(top: 10, left: 10),
                                    child: Row(
                                      children: [
-                                       Text('Sức chứa: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                                       Text('16 ', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                       Icon(Icons.people, color: Colors.black54,),
+                                       Text('Loại sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                                       Text('Sân 7', style: TextStyle(fontSize: 20, color: Colors.black54),),
                                      ],
                                    ),
                                  ),
@@ -283,7 +282,7 @@ class DetailsBookingState extends State<DetailsBooking> {
                                       padding: const EdgeInsets.only(top: 5.0),
                                       child: Text('-----------------------', style: TextStyle(color: Colors.black45),),
                                     ),
-                                    containerRates('Văn Tèo', '12:00  17/10/2020', Star4(), 'Tốt !!!'),
+                                    containerRates('Phương Đạt', '12:00  17/10/2020', Star4(), 'Tốt !!!'),
                                   ],
                                 ),
                               ),
