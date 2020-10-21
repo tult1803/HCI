@@ -1,3 +1,6 @@
+
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
@@ -150,13 +153,14 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
           child: Padding(
             padding: const EdgeInsets.only(left:8.0, right: 8.0, top: 10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Card(
                   color: Colors.white70,
                   child:Column(children: [
-                    Center(child: Text('Lịch đặt sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                    Center(child: Text('Bảng thời gian', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      padding: const EdgeInsets.only(top: 10, left: 0),
                       child: Row(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,22 +174,38 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
-                          Expanded(
-                            child: Container(
-                              // margin: EdgeInsets.only(right: 5),
-                              // width: size.width * 0.67,
-                              child: Text('$note', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
-                          ),
-                        ],
+
+                       Container(
+                        width: size.width,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: 90,),
+                                  Icon(Icons.adjust, color: Colors.redAccent,),
+                                  Text(' Hết sân',  style: TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.w500),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(width: 20,),
+                                  Icon(Icons.adjust, color: Colors.black54,),
+                                  Text(' Sân trống',  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
+
                     SizedBox(height: 20,),
                   ],),),
 
@@ -529,13 +549,39 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   }
 
   Widget columHCI(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('16h - 18h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-      ],
+    return Container(
+      width: 200,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          containerTime('8h', Colors.black54),
+          containerTime('9h', Colors.black54),
+          containerTime('10h', Colors.redAccent),
+          containerTime('11h', Colors.redAccent),
+          containerTime('12h', Colors.black54),
+          containerTime('13h', Colors.black54),
+          containerTime('14h', Colors.black54),
+          containerTime('15h', Colors.black54),
+          containerTime('16h', Colors.black54),
+          containerTime('17h', Colors.redAccent),
+          containerTime('18h', Colors.redAccent),
+          containerTime('19h', Colors.black54),
+          containerTime('20h', Colors.black54),
+          containerTime('21h', Colors.black54),
+          containerTime('22h', Colors.black54),
+          containerTime('  ', Colors.black54),
+        ],
+      ),
+    );
+  }
+
+  Widget containerTime(String time, Color color){
+   return Container(
+      height: 30,width: 50,
+      decoration: BoxDecoration(
+        border: Border.all(color: color),
+      ),
+      child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
     );
   }
   Widget columISC(){
