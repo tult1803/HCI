@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
 // import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:football_manager/url/url.dart';
 import 'package:football_manager/view/booking.dart';
 import 'package:football_manager/view/final_details_booking.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 // import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,13 +23,15 @@ class DetailsBookingState extends State<DetailsBooking> {
   String btnDiscount, eror;
   Widget _widget;
   String tapped = null;
-  String  email, displayName, days;
-  String address, startTime ='', endTime='';
+  String email, displayName, days;
+  String address, startTime = '', endTime = '';
   String phone, discount = '-----', discountCheck;
   String timeOpen, priceDiscount;
   String admin, totalTimeHours, totalTime, totalTimeMinute;
-  static String  downPrice ='0';
-  String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
+  static String downPrice = '0';
+  String note =
+      'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
+
   @override
   void initState() {
     // TODO: implement initState
@@ -39,7 +43,7 @@ class DetailsBookingState extends State<DetailsBooking> {
     _checkTapped();
   }
 
-  void _getProfile() async{
+  void _getProfile() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       email = prefs.getString('email');
@@ -47,32 +51,32 @@ class DetailsBookingState extends State<DetailsBooking> {
     });
   }
 
-  void _getTapped(){
+  void _getTapped() {
     setState(() {
       tapped = BookingPageState.tapped;
-      if(tapped == ''){
+      if (tapped == '') {
         tapped = 'Sân bóng HCI   5.0';
       }
-     if(BookingPageState.day == ''){
-       DateTime dateTime = DateTime.now();
-       days = '${dateTime.day}-${dateTime.month}-${dateTime.year}';
-     }else {
-       days = BookingPageState.day;
-     }
+      if (BookingPageState.day == '') {
+        DateTime dateTime = DateTime.now();
+        days = '${dateTime.day}-${dateTime.month}-${dateTime.year}';
+      } else {
+        days = BookingPageState.day;
+      }
     });
   }
 
-  void _checkTapped(){
-    if(tapped == 'Sân bóng SWD   4.5'){
+  void _checkTapped() {
+    if (tapped == 'Sân bóng SWD   4.5') {
       setState(() {
-         address = '67 Đường số 447, Tăng Nhơn Phú A, Quận 9, TP.HCM';
-         phone = '0956721329';
-         timeOpen = '8h - 22h';
-         admin = 'A.Tú';
-         price = 130;
-         _widget = columSWD();
+        address = '67 Đường số 447, Tăng Nhơn Phú A, Quận 9, TP.HCM';
+        phone = '0956721329';
+        timeOpen = '8h - 22h';
+        admin = 'A.Tú';
+        price = 130;
+        _widget = columSWD();
       });
-    }else if(tapped == 'Sân bóng HCI   5.0'){
+    } else if (tapped == 'Sân bóng HCI   5.0') {
       setState(() {
         address = '442 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, TP.HCM';
         phone = '0906534119';
@@ -81,7 +85,7 @@ class DetailsBookingState extends State<DetailsBooking> {
         price = 100;
         _widget = columHCI();
       });
-    }else if(tapped == 'Sân bóng PRM   3.5'){
+    } else if (tapped == 'Sân bóng PRM   3.5') {
       setState(() {
         address = '6 Đường số 51, Hiệp Bình Chánh, Thủ Đức, TP.HCM';
         phone = '0978999999';
@@ -90,7 +94,7 @@ class DetailsBookingState extends State<DetailsBooking> {
         price = 110;
         _widget = columPRM();
       });
-    }else if(tapped == 'Sân bóng ACC   3.0'){
+    } else if (tapped == 'Sân bóng ACC   3.0') {
       setState(() {
         address = '225 Nam Hòa, Phước Long A, Quận 9, TP.HCM';
         phone = '0907777777';
@@ -99,7 +103,7 @@ class DetailsBookingState extends State<DetailsBooking> {
         price = 120;
         _widget = columACC();
       });
-    }else if(tapped == 'Sân bóng ISC   4.0'){
+    } else if (tapped == 'Sân bóng ISC   4.0') {
       setState(() {
         address = '9 Hém 445, Phước Long B, Quận 9, TP.HCM';
         phone = '0901234567';
@@ -110,15 +114,14 @@ class DetailsBookingState extends State<DetailsBooking> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(url_imgbackground_welcome))
-      ),
+              fit: BoxFit.fill, image: AssetImage(url_imgbackground_welcome))),
       child: Scaffold(
         appBar: AppBar(
           title: Text('Chi tiết sân'),
@@ -127,171 +130,268 @@ class DetailsBookingState extends State<DetailsBooking> {
         backgroundColor: Colors.white10,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left:8.0, right: 8.0, top: 10),
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 10),
             child: Column(
               children: [
-                Card(
-                  color: Colors.white70,
-                  child: Container(
-                    width: size.width,
-                    // height: 230,
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     // mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Padding(
-                         padding: const EdgeInsets.only(top: 20.0),
-                         child: Center(child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Text('${tapped}', style: GoogleFonts.alice(fontSize: 28, fontWeight: FontWeight.w600),),
-                             Icon(Icons.star ,color: Colors.amber,),
-                           ],
-                         )),
-                       ),
-                       Padding(
-                         padding: const EdgeInsets.only(top: 10, left: 20),
-                         child: Row(
-                           children: [
-                             Text('Liên hệ: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Text('$phone ($admin)', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                           ],
-                         ),
-                       ),
-                       Padding(
-                         padding: const EdgeInsets.only(top: 10, left: 20),
-                         child: Row(
-                           // mainAxisAlignment: MainAxisAlignment.start,
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Text('Địa chỉ: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Expanded(
-                               child: Container(
-                                 // margin: EdgeInsets.only(right: 5),
-                                 // width: size.width * 0.67,
-                                 child: Text('$address', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
-                             ),
-                           ],
-                         ),
-                       ),
-
-                       // Padding(
-                       //   padding: const EdgeInsets.only(top: 10, left: 20),
-                       //   child: Row(
-                       //     children: [
-                       //       Text('Khoảng cách: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                       //       Text('4km (', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                       //       Icon(Icons.watch_later_outlined, size: 15,),
-                       //       Text('15p)', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                       //     ],
-                       //   ),
-                       // ),
-
-                       Padding(
-                         padding: const EdgeInsets.only(top: 10, left: 20),
-                         child: Row(
-                           children: [
-                             Text('Mở cửa: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                             Text('$timeOpen', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                           ],
-                         ),
-                       ),
-
-                       Row(
-                         children: [
-                           Container(
-                             child: Column(
-                               children: [
-                                 Padding(
-                                   padding: const EdgeInsets.only(top: 10, left: 10),
-                                   child: Row(
-                                     children: [
-                                       Text('Loại sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                                       Text('Sân 7', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                     ],
-                                   ),
-                                 ),
-
-                                 Padding(
-                                   padding: const EdgeInsets.only(top: 10, left: 20),
-                                   child: Row(
-                                     children: [
-                                       Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                                       Text('${price}k/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                     ],
-                                   ),
-                                 ),
-                               ],
-                             ),
-                           ),
-
-                           Expanded(child: Column(
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               Container(
-                                 height: 30,
-                                 decoration: BoxDecoration(
-                                   color: Colors.green,
-                                   borderRadius: BorderRadius.circular(20),
-                                 ),
-                                 child: FlatButton(
-                                   shape: RoundedRectangleBorder(
-                                     borderRadius: BorderRadius.circular(20),
-                                   ),
-                                     onPressed: () {
-                                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => FinalDetailsBooking()));
-                                 },
-                                     child: Text('Đặt sân', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600,fontSize: 20),)),
-                               ),
-                             ],
-                           )),
-                         ],
-                       ),
-                       SizedBox(height: 20,),
-                     ],
-                   ))),
-
                 Card(
                     color: Colors.white70,
                     child: Container(
                         width: size.width,
-                        height: 500,
-                      child: Column(
-                        children: [
-                          SizedBox(height: 10,),
-                          Text('Bình luận', style:  TextStyle(fontSize: 28, fontWeight: FontWeight.w700),),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  // color: Colors.green,
-                                  border: Border.all(color: Colors.black54),
+                        // height: 230,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '${tapped}',
+                                    style: GoogleFonts.alice(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                ],
+                              )),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Liên hệ: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    '$phone ($admin)',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black54),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20),
+                              child: Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Địa chỉ: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      // margin: EdgeInsets.only(right: 5),
+                                      // width: size.width * 0.67,
+                                      child: Text(
+                                        '$address',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.black54),
+                                        overflow: TextOverflow.fade,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top: 10, left: 20),
+                            //   child: Row(
+                            //     children: [
+                            //       Text('Khoảng cách: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                            //       Text('4km (', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                            //       Icon(Icons.watch_later_outlined, size: 15,),
+                            //       Text('15p)', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                            //     ],
+                            //   ),
+                            // ),
+
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Mở cửa: ',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    '$timeOpen',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.black54),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            Row(
+                              children: [
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, left: 10),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Loại sân: ',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              'Sân 7',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black54),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, left: 20),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Giá sân: ',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              '${price}k/1h',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black54),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                child: Column(
+                                Expanded(
+                                    child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    containerRates('Thanh Tú', '12:19  18/10/2020', Star5(), 'Đá quên trả tiền. Lần sau trả bù !!!'),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
-                                      child: Text('-----------------------', style: TextStyle(color: Colors.black45),),
+                                    Container(
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        FinalDetailsBooking()));
+                                          },
+                                          child: Text(
+                                            'Đặt sân',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 20),
+                                          )),
                                     ),
-                                    containerRates('Minh Tuấn', '17:25  17/10/2020', Star4_5(), 'Chủ sân nhiệt tình !!!'),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5.0),
-                                      child: Text('-----------------------', style: TextStyle(color: Colors.black45),),
-                                    ),
-                                    containerRates('Phương Đạt', '12:00  17/10/2020', Star4(), 'Tốt !!!'),
                                   ],
-                                ),
+                                )),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ))),
+                Card(
+                  color: Colors.white70,
+                  child: Container(
+                    width: size.width,
+                    height: 500,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Bình luận',
+                          style: TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.w700),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                // color: Colors.green,
+                                border: Border.all(color: Colors.black54),
+                              ),
+                              child: Column(
+                                children: [
+                                  containerRates(
+                                      'Thanh Tú',
+                                      '12:19  18/10/2020',
+                                      Star5(),
+                                      'Đá quên trả tiền. Lần sau trả bù !!!'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      '-----------------------',
+                                      style: TextStyle(color: Colors.black45),
+                                    ),
+                                  ),
+                                  containerRates(
+                                      'Minh Tuấn',
+                                      '17:25  17/10/2020',
+                                      Star4_5(),
+                                      'Chủ sân nhiệt tình !!!'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      '-----------------------',
+                                      style: TextStyle(color: Colors.black45),
+                                    ),
+                                  ),
+                                  containerRates('Phương Đạt',
+                                      '12:00  17/10/2020', Star4(), 'Tốt !!!'),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                            ),
-                      ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -300,50 +400,140 @@ class DetailsBookingState extends State<DetailsBooking> {
     );
   }
 
-  Widget Star4_5(){
+  Widget Star4_5() {
     return Row(children: [
-        SizedBox(width: 8,),
-    Icon(Icons.star,color: Colors.amber, size: 20,),
-    Icon(Icons.star,color: Colors.amber, size: 20,),
-    Icon(Icons.star,color: Colors.amber, size: 20,),
-    Icon(Icons.star,color: Colors.amber, size: 20,),
-    Icon(Icons.star_half,color: Colors.amber, size: 20,),
+      SizedBox(
+        width: 8,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star_half,
+        color: Colors.amber,
+        size: 20,
+      ),
     ]);
   }
 
-  Widget Star5(){
+  Widget Star5() {
     return Row(children: [
-      SizedBox(width: 8,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-    ]);
-  }
-  Widget Star4(){
-    return Row(children: [
-      SizedBox(width: 8,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star_border,color: Colors.amber, size: 20,),
+      SizedBox(
+        width: 8,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
     ]);
   }
 
-  Widget Star3(){
+  Widget Star4() {
     return Row(children: [
-      SizedBox(width: 8,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star,color: Colors.amber, size: 20,),
-      Icon(Icons.star_border,color: Colors.amber, size: 20,),
-      Icon(Icons.star_border,color: Colors.amber, size: 20,),
+      SizedBox(
+        width: 8,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star_border,
+        color: Colors.amber,
+        size: 20,
+      ),
     ]);
   }
 
-  Widget containerRates(String name, String dateTime, Widget star, String chat){
+  Widget Star3() {
+    return Row(children: [
+      SizedBox(
+        width: 8,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star_border,
+        color: Colors.amber,
+        size: 20,
+      ),
+      Icon(
+        Icons.star_border,
+        color: Colors.amber,
+        size: 20,
+      ),
+    ]);
+  }
+
+  Widget containerRates(
+      String name, String dateTime, Widget star, String chat) {
     return Container(
       padding: EdgeInsets.only(top: 5),
       child: Column(
@@ -353,7 +543,11 @@ class DetailsBookingState extends State<DetailsBooking> {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: CircleAvatar(
-                  child: Icon(Icons.person_outline, size: 30,color: Colors.white,),
+                  child: Icon(
+                    Icons.person_outline,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                   radius: 25,
                   backgroundColor: Colors.black26,
                 ),
@@ -370,14 +564,27 @@ class DetailsBookingState extends State<DetailsBooking> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 10, top: 5),
-                            child: Text('$name', style: TextStyle(fontWeight: FontWeight.w500),),
+                            child: Text(
+                              '$name',
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                            ),
                           ),
-                          Expanded(child: SizedBox(height: 10,)),
-                          Text('$dateTime', style: TextStyle(color: Colors.black87),),
-                          SizedBox(width: 10,),
+                          Expanded(
+                              child: SizedBox(
+                            height: 10,
+                          )),
+                          Text(
+                            '$dateTime',
+                            style: TextStyle(color: Colors.black87),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
                         ],
                       ),
-                      SizedBox(height: 8,),
+                      SizedBox(
+                        height: 8,
+                      ),
                       star,
                     ],
                   ),
@@ -385,14 +592,19 @@ class DetailsBookingState extends State<DetailsBooking> {
               ),
             ],
           ),
-          Row(children: [
-            SizedBox(width: 70,),
-            Text('$chat'),
-          ],),
+          Row(
+            children: [
+              SizedBox(
+                width: 70,
+              ),
+              Text('$chat'),
+            ],
+          ),
         ],
       ),
     );
   }
+
 //
 //   void _deleteDiscount(){
 //     setState(() {
@@ -480,7 +692,7 @@ class DetailsBookingState extends State<DetailsBooking> {
 //     );
 //   }
 
-  Widget containerWrap(Widget widget){
+  Widget containerWrap(Widget widget) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: Container(
@@ -495,55 +707,108 @@ class DetailsBookingState extends State<DetailsBooking> {
       ),
     );
   }
-  Widget columSWD(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('20h - 22h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
 
+  Widget columSWD() {
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        containerWrap(Text('8h - 9h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
+        SizedBox(
+          width: 5,
+        ),
+        containerWrap(Text('13h - 15h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
+        SizedBox(
+          width: 5,
+        ),
+        containerWrap(Text('20h - 22h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
       ],
     );
   }
 
-  Widget columHCI(){
+  Widget columHCI() {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        containerWrap(Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('16h - 18h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
+        containerWrap(Text('8h - 9h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
+        SizedBox(
+          width: 5,
+        ),
+        containerWrap(Text('16h - 18h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
       ],
     );
   }
-  Widget columISC(){
+
+  Widget columISC() {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('18h - 20h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
+        containerWrap(Text('13h - 15h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
+        SizedBox(
+          width: 5,
+        ),
+        containerWrap(Text('18h - 20h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
       ],
     );
   }
-  Widget columPRM(){
+
+  Widget columPRM() {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('21h - 22h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
+        containerWrap(Text('13h - 15h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
+        SizedBox(
+          width: 5,
+        ),
+        containerWrap(Text('21h - 22h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
       ],
     );
   }
-  Widget columACC(){
+
+  Widget columACC() {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        containerWrap(Text('10h - 12h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
+        containerWrap(Text('10h - 12h',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w500))),
       ],
     );
   }
@@ -772,5 +1037,5 @@ class DetailsBookingState extends State<DetailsBooking> {
 //       ),
 //     );
 //   }
-  }
+}
 //
