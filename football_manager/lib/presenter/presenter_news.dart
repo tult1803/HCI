@@ -22,7 +22,9 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
               // height: categoryHeight - 15,
               decoration: BoxDecoration(
                   // image: DecorationImage(
-                  //   image: AssetImage('images/logo.png'),
+                    // fit: BoxFit.none,
+                    // alignment: Alignment.topLeft,
+                    // image: AssetImage('images/logo02.png'),
                   // ),
                   color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: FlatButton(

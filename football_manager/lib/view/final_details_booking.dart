@@ -94,7 +94,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         timeOpen = '8h - 22h';
         admin = 'A.Tú';
         price = 130;
-        _widget = columSWD();
+        _widget = columnSWD();
       });
     }else if(tapped == 'Sân bóng HCI   5.0'){
       setState(() {
@@ -232,6 +232,13 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                                         print("Picked Date: ${DateFormat('dd-MM-yyyy').format(pickedDate)}");
                                         setState(() {
                                           days = '${DateFormat('dd-MM-yyyy').format(pickedDate)}';
+                                          if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  0)))){
+                                            _widget = columHCI();
+                                          }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -1)))){
+                                            _widget = columnSWD();
+                                          }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -2)))){
+                                            _widget = columACC();
+                                          }else _widget = columPRM();
                                         });
                                       }))),],
                             ),
@@ -434,91 +441,91 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     );
   }
 
-  void _deleteDiscount(){
-    setState(() {
-      discount = '-----';
-      checkClickDiscount = 0;
-      btnDiscount = 'Nhập mã';
-    });
-  }
+//   void _deleteDiscount(){
+//     setState(() {
+//       discount = '-----';
+//       checkClickDiscount = 0;
+//       btnDiscount = 'Nhập mã';
+//     });
+//   }
+//
+//   void _inputDiscount() async{
+//     await showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         // return object of type Dialog
+//         return AlertDialog(
+//           title: new Text("Mã giảm giá"),
+//           content: Container(
+//             height: 60,
+//             child: _buildIDTF(),
+//           ),
+//           actions: <Widget>[
+//             // usually buttons at the bottom of the dialog
+//             new FlatButton(
+//               child: new Text("Done",style: TextStyle(color: Colors.green),),
+//               onPressed: () async {
+//                 setState(() {
+//                   discount = discountCheck;
+//                   setState(() {
+//                     if(checkClickDiscount == 0){
+//                       checkClickDiscount = 1;
+//                       btnDiscount = 'Xoá mã';
+//                     }
+//                   });
+//                 });
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//           ],
+//         );
+//       },
+//     ).then((val) {
+// //            *** Code Here ***
+//     });
+//   }
 
-  void _inputDiscount() async{
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("Mã giảm giá"),
-          content: Container(
-            height: 60,
-            child: _buildIDTF(),
-          ),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Done",style: TextStyle(color: Colors.green),),
-              onPressed: () async {
-                setState(() {
-                  discount = discountCheck;
-                  setState(() {
-                    if(checkClickDiscount == 0){
-                      checkClickDiscount = 1;
-                      btnDiscount = 'Xoá mã';
-                    }
-                  });
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    ).then((val) {
-//            *** Code Here ***
-    });
-  }
-
-  Widget _buildIDTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                  Radius.circular(4)
-              ),
-              boxShadow: [BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(0,-1),
-                  blurRadius: 0,
-                  spreadRadius: 0
-              )] ,
-              color: Colors.white
-          ),
-          height: 60.0,
-          child: TextField(
-            onChanged: (text1) {
-              setState(() {
-                discountCheck = text1;
-                print('discountCheck: $discountCheck');
-              });
-            },
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14.0),
-                prefixIcon: Icon(
-                  Icons.monetization_on,
-                  color: Colors.blue,
-                ),
-                hintText: 'Nhập mã giảm giá....'
-            ),
-          ),
-        )
-      ],
-    );
-  }
+  // Widget _buildIDTF() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: <Widget>[
+  //       Container(
+  //         alignment: Alignment.centerLeft,
+  //         decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.all(
+  //                 Radius.circular(4)
+  //             ),
+  //             boxShadow: [BoxShadow(
+  //                 color: Colors.grey,
+  //                 offset: Offset(0,-1),
+  //                 blurRadius: 0,
+  //                 spreadRadius: 0
+  //             )] ,
+  //             color: Colors.white
+  //         ),
+  //         height: 60.0,
+  //         child: TextField(
+  //           onChanged: (text1) {
+  //             setState(() {
+  //               discountCheck = text1;
+  //               print('discountCheck: $discountCheck');
+  //             });
+  //           },
+  //           keyboardType: TextInputType.text,
+  //           decoration: InputDecoration(
+  //               border: InputBorder.none,
+  //               contentPadding: EdgeInsets.only(top: 14.0),
+  //               prefixIcon: Icon(
+  //                 Icons.monetization_on,
+  //                 color: Colors.blue,
+  //               ),
+  //               hintText: 'Nhập mã giảm giá....'
+  //           ),
+  //         ),
+  //       )
+  //     ],
+  //   );
+  // }
   Widget containerWrap(Widget widget){
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
@@ -534,21 +541,122 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
       ),
     );
   }
-  Widget columSWD(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('8h - 9h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('20h - 22h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-
-      ],
+  Widget columnSWD(){
+    return Container(
+      width: 200,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          containerTime('8h', Colors.redAccent),
+          containerTime('9h', Colors.redAccent),
+          containerTime('10h', Colors.black54),
+          containerTime('11h', Colors.black54),
+          containerTime('12h', Colors.black54),
+          containerTime('13h', Colors.black54),
+          containerTime('14h', Colors.black54),
+          containerTime('15h', Colors.black54),
+          containerTime('16h', Colors.black54),
+          containerTime('17h', Colors.black54),
+          containerTime('18h', Colors.black54),
+          containerTime('19h', Colors.black54),
+          containerTime('20h', Colors.redAccent),
+          containerTime('21h', Colors.redAccent),
+          containerTime('22h', Colors.redAccent),
+          containerTime('  ', Colors.black54),
+        ],
+      ),
     );
   }
 
   Widget columHCI(){
+      return Container(
+        width: 200,
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            containerTime('8h', Colors.black54),
+            containerTime('9h', Colors.black54),
+            containerTime('10h', Colors.redAccent),
+            containerTime('11h', Colors.redAccent),
+            containerTime('12h', Colors.black54),
+            containerTime('13h', Colors.black54),
+            containerTime('14h', Colors.black54),
+            containerTime('15h', Colors.black54),
+            containerTime('16h', Colors.black54),
+            containerTime('17h', Colors.redAccent),
+            containerTime('18h', Colors.redAccent),
+            containerTime('19h', Colors.black54),
+            containerTime('20h', Colors.black54),
+            containerTime('21h', Colors.black54),
+            containerTime('22h', Colors.black54),
+            containerTime('  ', Colors.black54),
+          ],
+        ),
+      );
+  }
+
+  Widget containerTime(String time, Color color){
+   return Container(
+      height: 30,width: 50,
+      decoration: BoxDecoration(
+        border: Border.all(color: color),
+      ),
+      child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
+    );
+  }
+  Widget columISC(){
+    return Container(
+      width: 200,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          containerTime('8h', Colors.black54),
+          containerTime('9h', Colors.black54),
+          containerTime('10h', Colors.black54),
+          containerTime('11h', Colors.black54),
+          containerTime('12h', Colors.black54),
+          containerTime('13h', Colors.black54),
+          containerTime('14h', Colors.black54),
+          containerTime('15h', Colors.black54),
+          containerTime('16h', Colors.black54),
+          containerTime('17h', Colors.black54),
+          containerTime('18h', Colors.black54),
+          containerTime('19h', Colors.black54),
+          containerTime('20h', Colors.black54),
+          containerTime('21h', Colors.black54),
+          containerTime('22h', Colors.black54),
+          containerTime('  ', Colors.black54),
+        ],
+      ),
+    );
+  }
+  Widget columPRM(){
+    return Container(
+      width: 200,
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          containerTime('8h', Colors.black54),
+          containerTime('9h', Colors.black54),
+          containerTime('10h', Colors.black54),
+          containerTime('11h', Colors.black54),
+          containerTime('12h', Colors.black54),
+          containerTime('13h', Colors.black54),
+          containerTime('14h', Colors.black54),
+          containerTime('15h', Colors.black54),
+          containerTime('16h', Colors.black54),
+          containerTime('17h', Colors.black54),
+          containerTime('18h', Colors.black54),
+          containerTime('19h', Colors.black54),
+          containerTime('20h', Colors.black54),
+          containerTime('21h', Colors.black54),
+          containerTime('22h', Colors.black54),
+          containerTime('  ', Colors.black54),
+        ],
+      ),
+    );
+  }
+  Widget columACC(){
     return Container(
       width: 200,
       child: Wrap(
@@ -565,51 +673,13 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
           containerTime('16h', Colors.black54),
           containerTime('17h', Colors.redAccent),
           containerTime('18h', Colors.redAccent),
-          containerTime('19h', Colors.black54),
-          containerTime('20h', Colors.black54),
-          containerTime('21h', Colors.black54),
-          containerTime('22h', Colors.black54),
+          containerTime('19h', Colors.redAccent),
+          containerTime('20h', Colors.redAccent),
+          containerTime('21h', Colors.redAccent),
+          containerTime('22h', Colors.redAccent),
           containerTime('  ', Colors.black54),
         ],
       ),
-    );
-  }
-
-  Widget containerTime(String time, Color color){
-   return Container(
-      height: 30,width: 50,
-      decoration: BoxDecoration(
-        border: Border.all(color: color),
-      ),
-      child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
-    );
-  }
-  Widget columISC(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('18h - 20h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-      ],
-    );
-  }
-  Widget columPRM(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('13h - 15h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-        SizedBox(width: 5,),
-        containerWrap(Text('21h - 22h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-      ],
-    );
-  }
-  Widget columACC(){
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        containerWrap(Text('10h - 12h', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500))),
-      ],
     );
   }
   void _checkTime(){
