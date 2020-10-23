@@ -138,15 +138,11 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(url_imgbackground_welcome))
-      ),
+      color: Colors.white,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Đặt sân'),
-          backgroundColor: Colors.white10,
+          title: Text('Đặt sân', style: TextStyle(fontSize: 25),),
+          backgroundColor: main_color,
         ),
         backgroundColor: Colors.white10,
         body: SingleChildScrollView(
@@ -156,9 +152,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Card(
-                  color: Colors.white70,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black12, width: 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child:Column(children: [
-                    Center(child: Text('Bảng thời gian', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Center(child: Text('Bảng thời gian', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10, left: 0),
                       child: Row(
@@ -210,7 +213,11 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   ],),),
 
                 Card(
-                    color: Colors.white70,
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black12, width: 1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Container(
                       width: size.width,
                       child: Column(
@@ -330,7 +337,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                                 width: 200,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                    color: Colors.green,
+                                    color: main_color,
                                     borderRadius: BorderRadius.circular(20)
                                 ),
                                 child: FlatButton(
@@ -900,7 +907,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('$txt: ', style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 23, 22, 22), fontWeight: FontWeight.w500),),
+          Text('$txt: ', style: TextStyle(fontSize: 20, color: Colors.black.withOpacity(0.8) , fontWeight: FontWeight.w500),),
           Expanded(
             child: Container(
               // margin: EdgeInsets.only(right: 5),

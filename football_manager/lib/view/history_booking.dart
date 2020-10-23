@@ -16,16 +16,16 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
     var size = MediaQuery.of(context).size;
     return Container(
         height: size.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(url_imgbackground_welcome))),
+        // decoration: BoxDecoration(
+        //     image: DecorationImage(
+        //         fit: BoxFit.fill,
+        //         image: AssetImage(url_imgbackground_welcome))),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Lịch sử đặt sân'),
-            backgroundColor: Colors.white10,
+            title: Text('Lịch sử đặt sân', style: TextStyle(fontSize: 25),),
+            backgroundColor: Color.fromARGB(255, 2, 177, 79),
           ),
-          backgroundColor: Colors.white10,
+          // backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -34,10 +34,10 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                     context,
                     'HCI',
                     '23-10-2020  14:00',
-                    Colors.lightGreen,
+                    Color.fromARGB(255, 2, 177, 79),
                     Icon(
                       Icons.check,
-                      color: Colors.lightGreenAccent,
+                      color: Color.fromARGB(255, 2, 177, 79),
                       size: 50,
                     ),
                     'Hoàn tất'),
@@ -45,10 +45,10 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                     context,
                     'HCI',
                     '21-10-2020  10:30',
-                    Colors.lightGreen,
+                    Color.fromARGB(255, 2, 177, 79),
                     Icon(
                       Icons.check,
-                      color: Colors.lightGreenAccent,
+                      color: Color.fromARGB(255, 2, 177, 79),
                       size: 50,
                     ),
                     'Hoàn tất'),
@@ -81,6 +81,15 @@ Widget historyCard(BuildContext context, String name, String time, Color color,
         decoration: BoxDecoration(
           color: Colors.white60,
           borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.black12,width: 0.5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 10,
+              offset: Offset(2, 2), // changes position of shadow
+            ),
+          ],
         ),
         child: FlatButton(
           shape: RoundedRectangleBorder(

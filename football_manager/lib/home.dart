@@ -25,7 +25,7 @@ class HomePageState extends State{
     // TODO: implement initState
     super.initState();
     _widget = NewsPage();
-    color = Color.fromARGB(255, 143,183,130);
+    color =  Color.fromARGB(255, 2, 177, 79);
   }
   @override
   Widget build(BuildContext context) {
@@ -50,13 +50,13 @@ class HomePageState extends State{
               _page = index;
               print('Index: $_page');
               if(index == 0){
-                color = Color.fromARGB(255, 107,147,79);
+                // color =  Color.fromARGB(255, 2, 177, 79),
                 _widget = HistoryBookingPage();
               }else if(index == 1){
-                color = Color.fromARGB(255, 143,183,130);
+                // color =  Color.fromARGB(255, 2, 177, 79),
                 _widget = NewsPage();
               }else if(index == 2){
-                color = Color.fromARGB(255, 30,69,22);
+                // color =  Color.fromARGB(255, 2, 177, 79),
                 _widget = ProfilePage();
               }
             });

@@ -46,17 +46,12 @@ class BookingPageState extends State<BookingPage> {
     var size = MediaQuery.of(context).size;
     return  Container(
       height: size.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(url_imgbackground_welcome))
-        ),
+        color: Colors.white,
         child: Scaffold(
         appBar: AppBar(
     title: Text('Lịch đặt sân'),
-    backgroundColor: Colors.white10,
+    backgroundColor: main_color,
     ),
-    backgroundColor: Colors.white10,
         body: SafeArea(
           child: Column(
             children: [
@@ -95,9 +90,17 @@ class BookingPageState extends State<BookingPage> {
           .map((event) => Container(
         height: 80,
         decoration: BoxDecoration(
-          color: Colors.white70,
-          border: Border.all(width: 0.8),
+          color: Colors.white,
+          border: Border.all(width: 0.1),
           borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: Offset(2, 2), // changes position of shadow
+            ),
+          ]
         ),
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         child: ListTile(

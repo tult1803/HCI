@@ -18,14 +18,11 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
     var size = MediaQuery.of(context).size;
     return Container(
         height: size.height,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(url_imgbackground_welcome))),
+        color: Colors.white,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Chi tiết đặt sân'),
-            backgroundColor: Colors.white10,
+            title: Text('Chi tiết đặt sân', style: TextStyle(fontSize: 25),),
+            backgroundColor: main_color,
           ),
           backgroundColor: Colors.white10,
           body: SingleChildScrollView(
@@ -34,7 +31,11 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
               child: Column(
                 children: [
                   Card(
-                    color: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black12, width: 1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    color: Colors.white,
                     child: Container(
                       width: size.width,
                       // height: 400,
@@ -206,7 +207,7 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                                   'Hoàn tất',
                                   style: TextStyle(
                                       fontSize: 17,
-                                      color: Colors.green,
+                                      color: main_color,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],
@@ -220,7 +221,7 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                                 height: 35,
                                 width: 100,
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: main_color,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: FlatButton(

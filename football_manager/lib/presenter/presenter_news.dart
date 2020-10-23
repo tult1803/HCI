@@ -21,12 +21,17 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
               decoration: BoxDecoration(
-                  // image: DecorationImage(
-                    // fit: BoxFit.none,
-                    // alignment: Alignment.topLeft,
-                    // image: AssetImage('images/logo02.png'),
-                  // ),
-                  color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: FlatButton(
                 onPressed: () async{
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsBooking()));
@@ -41,7 +46,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                           Expanded(
                             child: Text(
                               "$s1",
-                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Text('$ss1', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
@@ -104,7 +109,18 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
               width: 300,
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
-              decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -116,7 +132,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                           Expanded(
                             child: Text(
                               "$s2",
-                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Text('$ss2', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
@@ -179,8 +195,18 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
               width: 300,
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
-              decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              child: Padding(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),              child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +216,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                         Expanded(
                           child: Text(
                             "$s3",
-                            style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Text('$ss3', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
@@ -272,7 +298,18 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
               width: 300,
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
-              decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: FlatButton(
                 onPressed: () async{
                   FinalDetailsBookingState.downPrice = '20';
@@ -288,7 +325,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Expanded(
                             child: Text(
                               "$s1",
-                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Text('$ss1', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
@@ -356,7 +393,18 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
               width: 300,
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
-              decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Container(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -368,7 +416,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                           Expanded(
                             child: Text(
                               "$s2",
-                              style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                             ),
                           ),
                           Text('$ss2', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),
@@ -436,7 +484,18 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
               width: 300,
               margin: EdgeInsets.only(right: 20),
               // height: categoryHeight - 15,
-              decoration: BoxDecoration(color: Colors.white70, borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(2, 2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -447,7 +506,7 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                         Expanded(
                           child: Text(
                             "$s3",
-                            style: GoogleFonts.capriola(fontSize: 23, color: Colors.black87, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.capriola(fontSize: 22, color: Colors.black87, fontWeight: FontWeight.w500),
                           ),
                         ),
                         Text('$ss3', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),),

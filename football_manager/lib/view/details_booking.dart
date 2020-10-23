@@ -119,13 +119,11 @@ class DetailsBookingState extends State<DetailsBooking> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill, image: AssetImage(url_imgbackground_welcome))),
+     color: Colors.white,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Chi tiết sân'),
-          backgroundColor: Colors.white10,
+          title: Text('Chi tiết sân', style: TextStyle(fontSize: 25)),
+          backgroundColor: main_color,
         ),
         backgroundColor: Colors.white10,
         body: SingleChildScrollView(
@@ -134,7 +132,11 @@ class DetailsBookingState extends State<DetailsBooking> {
             child: Column(
               children: [
                 Card(
-                    color: Colors.white70,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black12, width: 1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    color: Colors.white,
                     child: Container(
                         width: size.width,
                         // height: 230,
@@ -209,18 +211,6 @@ class DetailsBookingState extends State<DetailsBooking> {
                                 ],
                               ),
                             ),
-
-                            // Padding(
-                            //   padding: const EdgeInsets.only(top: 10, left: 20),
-                            //   child: Row(
-                            //     children: [
-                            //       Text('Khoảng cách: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                            //       Text('4km (', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                            //       Icon(Icons.watch_later_outlined, size: 15,),
-                            //       Text('15p)', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                            //     ],
-                            //   ),
-                            // ),
 
                             Padding(
                               padding: const EdgeInsets.only(top: 10, left: 20),
@@ -300,7 +290,7 @@ class DetailsBookingState extends State<DetailsBooking> {
                                     Container(
                                       height: 30,
                                       decoration: BoxDecoration(
-                                        color: Colors.green,
+                                        color: main_color,
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: FlatButton(
@@ -332,7 +322,11 @@ class DetailsBookingState extends State<DetailsBooking> {
                           ],
                         ))),
                 Card(
-                  color: Colors.white70,
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.black12, width: 1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Container(
                     width: size.width,
                     height: 500,

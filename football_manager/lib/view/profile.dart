@@ -24,6 +24,14 @@ class _ProfilePageState extends State<ProfilePage> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
         child: Container(
           padding: const EdgeInsets.all(20),
@@ -122,82 +130,82 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget _userAdress() {
-    return Positioned(
-      top: 280,
-      child: Container(
-        margin: EdgeInsets.all(20),
-        height: 215,
-        width: MediaQuery.of(context).size.width * 0.90,
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(20)),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Địa chỉ cá nhân :",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("SĐT:"),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(child: Text("0908000123", overflow: TextOverflow.fade,)),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Địa chỉ:"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(child: Text("Lô E2a-7, Đường D1, Khu Công Nghệ Cao", overflow: TextOverflow.fade,)),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Quận:"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text("Quận 9"),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Thành phố:"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text("Hồ Chí Minh"),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _userAdress() {
+  //   return Positioned(
+  //     top: 280,
+  //     child: Container(
+  //       margin: EdgeInsets.all(20),
+  //       height: 215,
+  //       width: MediaQuery.of(context).size.width * 0.90,
+  //       decoration: BoxDecoration(
+  //           color: Colors.white, borderRadius: BorderRadius.circular(20)),
+  //       child: Container(
+  //         padding: EdgeInsets.all(20),
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.center,
+  //           children: <Widget>[
+  //             Text(
+  //               "Địa chỉ cá nhân :",
+  //               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+  //             ),
+  //             SizedBox(
+  //               height: 10,
+  //             ),
+  //             Row(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: <Widget>[
+  //                 Text("SĐT:"),
+  //                 SizedBox(
+  //                   width: 10,
+  //                 ),
+  //                 Expanded(child: Text("0908000123", overflow: TextOverflow.fade,)),
+  //               ],
+  //             ),
+  //             SizedBox(
+  //               height: 10,
+  //             ),
+  //             Row(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: <Widget>[
+  //                 Text("Địa chỉ:"),
+  //                 SizedBox(
+  //                   width: 5,
+  //                 ),
+  //                 Expanded(child: Text("Lô E2a-7, Đường D1, Khu Công Nghệ Cao", overflow: TextOverflow.fade,)),
+  //               ],
+  //             ),
+  //             SizedBox(
+  //               height: 10,
+  //             ),
+  //             Row(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: <Widget>[
+  //                 Text("Quận:"),
+  //                 SizedBox(
+  //                   width: 5,
+  //                 ),
+  //                 Text("Quận 9"),
+  //               ],
+  //             ),
+  //             SizedBox(
+  //               height: 10,
+  //             ),
+  //             Row(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: <Widget>[
+  //                 Text("Thành phố:"),
+  //                 SizedBox(
+  //                   width: 5,
+  //                 ),
+  //                 Text("Hồ Chí Minh"),
+  //               ],
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _btnLogout() {
     return Positioned(
@@ -213,7 +221,7 @@ class _ProfilePageState extends State<ProfilePage> {
               margin: EdgeInsets.only(bottom: 20),
               child: RaisedButton(
                 elevation: 5.0,
-                color: Colors.white,
+                color: Color.fromARGB(255, 2, 177, 79),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
@@ -226,7 +234,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Text(
                   "Đăng xuất",
                   style: TextStyle(
-                    color: Colors.green,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                     letterSpacing: 1.5,
                     fontSize: MediaQuery.of(context).size.height / 40,
                   ),
@@ -257,11 +266,13 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(url_imgbackground_welcome))
-      ),
+      // decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //         fit: BoxFit.fill,
+      //         image: AssetImage(url_imgbackground_welcome))
+      // ),
+
+
       child: SafeArea(
         child: Stack(
           children: <Widget>[
