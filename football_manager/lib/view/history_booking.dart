@@ -22,7 +22,10 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
         //         image: AssetImage(url_imgbackground_welcome))),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Lịch sử đặt sân', style: TextStyle(fontSize: 25),),
+            title: Text(
+              'Lịch sử đặt sân',
+              style: TextStyle(fontSize: 25),
+            ),
             backgroundColor: Color.fromARGB(255, 2, 177, 79),
           ),
           // backgroundColor: Colors.white,
@@ -81,7 +84,7 @@ Widget historyCard(BuildContext context, String name, String time, Color color,
         decoration: BoxDecoration(
           color: Colors.white60,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.black12,width: 0.5),
+          border: Border.all(color: Colors.black12, width: 0.5),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -112,9 +115,9 @@ Widget historyCard(BuildContext context, String name, String time, Color color,
                       title: Text(
                         'Sân bóng $name',
                         style: GoogleFonts.capriola(
-                            fontSize: 20,
+                            fontSize: 22,
                             color: Colors.black87,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500),
                       ),
                       subtitle: Text(
                         'Ngày đặt: $time',

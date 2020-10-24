@@ -22,7 +22,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   int checkClickDiscount, price;
   double totalPrice;
   DateTime _endTime;
-  String btnDiscount, eror, pttt;
+  String btnDiscount, eror, pttt, dropdownValue = 'Sân 5';
   Widget _widget;
   String tapped = null;
   String  email, displayName, days;
@@ -228,7 +228,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                             padding: const EdgeInsets.only(top: 0, left:20),
                             child: Row(
                               children: [
-                                Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                                Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                                 Text('$days', style: TextStyle(fontSize: 20, color: Colors.black54),),
                                 Expanded(child: Container(
                                   alignment: Alignment.centerLeft,
@@ -255,7 +255,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                             padding: const EdgeInsets.only(top: 0, left: 20),
                             child: Row(
                               children: [
-                                Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                                Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                                 Text('$startTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
                                 Expanded(child: Container(
                                   alignment: Alignment.centerLeft,
@@ -279,7 +279,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                             padding: const EdgeInsets.only(top: 0, left: 20),
                             child: Row(
                               children: [
-                                Text('Giờ trả: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                                Text('Giờ trả: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                                 Text('$endTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
                                 Expanded(child: Container(
                                   alignment: Alignment.centerLeft,
@@ -296,6 +296,29 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                                         }, currentTime: DateTime.now());
                                       }),
                                 )),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0, left: 20),
+                            child: Row(
+                              children: [
+                                Text('Loại sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                                Expanded(child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: optionF()
+                                )),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0, left: 20),
+                            child: Row(
+                              children: [
+                                Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                                Text('${price}k/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
                               ],
                             ),
                           ),
@@ -325,8 +348,8 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                           // ),
 
                           Padding(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child:Text('Phương thức thanh toán: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                            padding: const EdgeInsets.only(top: 5, left: 20),
+                            child:Text('Phương thức thanh toán: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                           ),
                           radioPay(),
 
@@ -862,13 +885,14 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     _formPadding('Ngày đặt', days),
                     _formPadding('Giờ nhận sân', startTime),
                     _formPadding('Giờ trả sân', endTime),
-                    _formPadding('Giá sân', '$price/1h'),
-                    _formPadding('Giảm giá', '$downPrice%'),
+                    _formPadding('Loại sân', '$dropdownValue'),
+                    _formPadding('PTTT ', pttt),
                     SizedBox(height: 10,),
                     Center(child: Text('--------------------'),),
                     SizedBox(height: 5,),
                     Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
-                    _formPadding('PTTT ', pttt),
+                    _formPadding('Giá sân', '$price/1h'),
+                    _formPadding('Giảm giá', '$downPrice%'),
                     _formPadding('Tổng giờ', totalTime),
                     _formPadding('Giá sau giảm', '${mainPrice.toInt()}k/1h'),
                     _formPadding('Tổng tiền', '${totalPrice.toInt()}k'),
@@ -900,6 +924,37 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     });
   }
 
+  Widget optionF(){
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_downward),
+      iconSize: 16,
+      elevation: 16,
+      style: TextStyle(color: Colors.black54),
+      underline: Container(
+        height: 1,
+        // color: main_color,
+      ),
+      onChanged: (String newValue) {
+        setState(() {
+          dropdownValue = newValue;
+          if(dropdownValue == 'Sân 5'){
+            price = 100;
+          }else{
+            price = 140;
+          }
+        });
+      },
+      items: <String>['Sân 5', 'Sân 7']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value, style: TextStyle(fontSize: 20),),
+        );
+      }).toList(),
+    );
+  }
+
   Widget _formPadding(String txt, String subtxt){
     return Padding(
       padding: const EdgeInsets.only(top: 5, left: 0),
@@ -907,7 +962,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('$txt: ', style: TextStyle(fontSize: 20, color: Colors.black.withOpacity(0.8) , fontWeight: FontWeight.w500),),
+          Text('$txt: ', style: TextStyle(fontSize: 20, color: Colors.black.withOpacity(0.8) , fontWeight: FontWeight.w400),),
           Expanded(
             child: Container(
               // margin: EdgeInsets.only(right: 5),

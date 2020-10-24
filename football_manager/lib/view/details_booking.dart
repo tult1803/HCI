@@ -183,7 +183,7 @@ class DetailsBookingState extends State<DetailsBooking> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 10, left: 20),
+                              padding: const EdgeInsets.only(top: 10, left: 18),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,55 +212,33 @@ class DetailsBookingState extends State<DetailsBooking> {
                               ),
                             ),
 
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10, left: 20),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Mở cửa: ',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Text(
-                                    '$timeOpen',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.black54),
-                                  ),
-                                ],
-                              ),
-                            ),
-
                             Row(
                               children: [
                                 Container(
                                   child: Column(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, left: 10),
+                                        padding: const EdgeInsets.only(top: 10, left: 20),
                                         child: Row(
                                           children: [
                                             Text(
-                                              'Loại sân: ',
+                                              'Mở cửa: ',
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                             Text(
-                                              'Sân 7',
+                                              '$timeOpen',
                                               style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black54),
+                                                  fontSize: 20, color: Colors.black54),
                                             ),
                                           ],
                                         ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 10, left: 20),
+                                            top: 10, left: 10),
                                         child: Row(
                                           children: [
                                             Text(
@@ -806,6 +784,8 @@ class DetailsBookingState extends State<DetailsBooking> {
       ],
     );
   }
+
+  }
 //  void _checkTime(){
 //    if(startTime.isEmpty || startTime == ''){
 //      _showCheck("Giờ nhận trống !!!");
@@ -1031,5 +1011,4 @@ class DetailsBookingState extends State<DetailsBooking> {
 //       ),
 //     );
 //   }
-}
-//
+

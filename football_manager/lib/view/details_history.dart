@@ -144,7 +144,7 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 Text(
-                                  '14h00 - 15h00',
+                                  '14h00 - 16h00 (2h)',
                                   style: TextStyle(
                                       fontSize: 17, color: Colors.black54),
                                 ),
@@ -184,7 +184,7 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 Text(
-                                  '80k',
+                                  '160k',
                                   style: TextStyle(
                                       fontSize: 17, color: Colors.black54),
                                 ),

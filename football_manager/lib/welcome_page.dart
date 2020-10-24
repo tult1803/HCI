@@ -43,19 +43,20 @@ class WelcomePageState extends State{
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: main_color,
         image: DecorationImage(
-          fit: BoxFit.fill,
+          // fit: BoxFit.fill,
           image: AssetImage(url_imgbackground_welcome),
         ),
       ),
-      child: Center(
-        child: Text('FBall Manager', style: GoogleFonts.alice(
-            fontSize: 50,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-            decoration: TextDecoration.none
-        ),),
-      ),
+      // child: Center(
+      //   child: Text('FBall Manager', style: GoogleFonts.alice(
+      //       fontSize: 50,
+      //       fontWeight: FontWeight.w700,
+      //       color: Colors.white,
+      //       decoration: TextDecoration.none
+      //   ),),
+      // ),
     );
   }
 
