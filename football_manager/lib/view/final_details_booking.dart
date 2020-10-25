@@ -893,8 +893,8 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     Center(child:  Text("Tổng tiền" , style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 25),)),
                     _formPadding('Giá sân', '$price/1h'),
                     _formPadding('Giảm giá', '$downPrice%'),
-                    _formPadding('Tổng giờ', totalTime),
                     _formPadding('Giá sau giảm', '${mainPrice.toInt()}k/1h'),
+                    _formPadding('Tổng giờ', totalTime),
                     _formPadding('Tổng tiền', '${totalPrice.toInt()}k'),
 
                   ],

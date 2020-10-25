@@ -109,7 +109,7 @@ class NewsPageState extends State<NewsPage> {
               child: ListView(
                 padding: EdgeInsets.only(
                   left: 5,
-                  top: 10,
+                  top: 20,
                   right: 5,
                 ),
                 children: [
@@ -214,7 +214,7 @@ class NewsPageState extends State<NewsPage> {
                                 alignment: Alignment.topCenter,
                                 height: closeTopContainer
                                     ? 0
-                                    : (categoryHeight - 40),
+                                    : (categoryHeight - 50),
                                 child: CategoriesScroller(
                                     context,
                                     'Sân bóng HCI',
@@ -236,7 +236,7 @@ class NewsPageState extends State<NewsPage> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
+                    padding: const EdgeInsets.only(top: 0),
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
