@@ -75,7 +75,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     setState(() {
       tapped = BookingPageState.tapped;
       if(tapped == ''){
-        tapped = 'Sân bóng HCI   5.0';
+        tapped = 'Sân Phúc Lộc   5.0';
       }
       if(BookingPageState.day == ''){
         DateTime dateTime = DateTime.now();
@@ -87,7 +87,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   }
 
   void _checkTapped(){
-    if(tapped == 'Sân bóng SWD   4.5'){
+    if(tapped == 'Sân Nam Lý   4.5'){
       setState(() {
         address = '67 Đường số 447, Tăng Nhơn Phú A, Quận 9, TP.HCM';
         phone = '0956721329';
@@ -96,7 +96,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         price = 130;
         _widget = columnSWD();
       });
-    }else if(tapped == 'Sân bóng HCI   5.0'){
+    }else if(tapped == 'Sân Phúc Lộc   5.0'){
       setState(() {
         address = '442 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, TP.HCM';
         phone = '0906534119';
@@ -105,7 +105,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         price = 100;
         _widget = columHCI();
       });
-    }else if(tapped == 'Sân bóng PRM   3.5'){
+    }else if(tapped == 'Sân Tiến Phát   3.5'){
       setState(() {
         address = '6 Đường số 51, Hiệp Bình Chánh, Thủ Đức, TP.HCM';
         phone = '0978999999';
@@ -114,7 +114,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         price = 110;
         _widget = columPRM();
       });
-    }else if(tapped == 'Sân bóng ACC   3.0'){
+    }else if(tapped == 'Sân Hiệp Phú   3.0'){
       setState(() {
         address = '225 Nam Hòa, Phước Long A, Quận 9, TP.HCM';
         phone = '0907777777';
@@ -123,7 +123,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         price = 120;
         _widget = columACC();
       });
-    }else if(tapped == 'Sân bóng ISC   4.0'){
+    }else if(tapped == 'Sân Kaly   4.0'){
       setState(() {
         address = '9 Hém 445, Phước Long B, Quận 9, TP.HCM';
         phone = '0901234567';
@@ -940,12 +940,15 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
           dropdownValue = newValue;
           if(dropdownValue == 'Sân 5'){
             price = 100;
-          }else{
+          }else if(dropdownValue == 'Sân 7'){
             price = 140;
+          }else{
+            price = 300;
+            
           }
         });
       },
-      items: <String>['Sân 5', 'Sân 7']
+      items: <String>['Sân 5', 'Sân 7', 'Sân 11']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,

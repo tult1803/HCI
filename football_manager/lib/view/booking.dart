@@ -24,12 +24,12 @@ class BookingPageState extends State<BookingPage> {
     _controller = CalendarController();
     final _selectedDay = DateTime.now();
     _events = {
-      _selectedDay.subtract(Duration(days: 0)):  ['Sân bóng SWD   4.5', 'Sân bóng HCI   5.0', 'Sân bóng PRM   3.5'],
-      _selectedDay.subtract(Duration(days: -1)): ['Sân bóng ACC   3.0', 'Sân bóng ISC   4.0'],
-      _selectedDay.subtract(Duration(days: -2)): ['Sân bóng SWD   4.5', 'Sân bóng ISC   4.0', 'Sân bóng HCI   5.0'],
-      _selectedDay.subtract(Duration(days: -3)): ['Sân bóng ACC   3.0', 'Sân bóng PRM   3.5', 'Sân bóng HCI   5.0', 'Sân bóng ISC   4.0'],
-      _selectedDay.subtract(Duration(days: -4)): ['Sân bóng HCI   5.0', 'Sân bóng PRM   3.5', 'Sân bóng ACC   3.0', 'Sân bóng SWD   4.5', 'Sân bóng ISC   4.0'],
-      _selectedDay.subtract(Duration(days: -5)): ['Sân bóng SWD   4.5', 'Sân bóng HCI   5.0', 'Sân bóng PRM   3.5', 'Sân bóng ACC   3.0', 'Sân bóng ISC   4.0'],
+      _selectedDay.subtract(Duration(days: 0)):  ['Sân Nam Lý   4.5', 'Sân Phúc Lộc   5.0', 'Sân Tiến Phát   3.5'],
+      _selectedDay.subtract(Duration(days: -1)): ['Sân Hiệp Phú   3.0', 'Sân Kaly   4.0'],
+      _selectedDay.subtract(Duration(days: -2)): ['Sân Nam Lý   4.5', 'Sân Kaly   4.0', 'Sân Phúc Lộc   5.0'],
+      _selectedDay.subtract(Duration(days: -3)): ['Sân Hiệp Phú   3.0', 'Sân Tiến Phát   3.5', 'Sân Phúc Lộc   5.0', 'Sân Kaly   4.0'],
+      _selectedDay.subtract(Duration(days: -4)): ['Sân Phúc Lộc   5.0', 'Sân Tiến Phát   3.5', 'Sân Hiệp Phú   3.0', 'Sân Nam Lý   4.5', 'Sân Kaly   4.0'],
+      _selectedDay.subtract(Duration(days: -5)): ['Sân Nam Lý   4.5', 'Sân Phúc Lộc   5.0', 'Sân Tiến Phát   3.5', 'Sân Hiệp Phú   3.0', 'Sân Kaly   4.0'],
     };
 
     _selectedEvents = _events[_selectedDay] ?? [];

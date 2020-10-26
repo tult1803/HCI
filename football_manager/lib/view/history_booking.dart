@@ -35,7 +35,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                 // SizedBox(height: 10,),
                 historyCard(
                     context,
-                    'HCI',
+                    'Phúc Lộc',
                     '23-10-2020  14:00',
                     Color.fromARGB(255, 2, 177, 79),
                     Icon(
@@ -46,7 +46,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                     'Hoàn tất'),
                 historyCard(
                     context,
-                    'HCI',
+                    'Phúc Lộc',
                     '21-10-2020  10:30',
                     Color.fromARGB(255, 2, 177, 79),
                     Icon(
@@ -57,7 +57,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                     'Hoàn tất'),
                 historyCard(
                     context,
-                    'SWD',
+                    'Nam Lý',
                     '18-10-2020  18:00',
                     Colors.redAccent,
                     Icon(
@@ -113,7 +113,7 @@ Widget historyCard(BuildContext context, String name, String time, Color color,
                   children: [
                     ListTile(
                       title: Text(
-                        'Sân bóng $name',
+                        'Sân $name',
                         style: GoogleFonts.capriola(
                             fontSize: 22,
                             color: Colors.black87,

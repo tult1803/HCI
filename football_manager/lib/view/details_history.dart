@@ -54,7 +54,7 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Sân bóng HCI',
+                                  'Sân Phúc Lộc',
                                   style: GoogleFonts.alice(
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600),
