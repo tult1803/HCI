@@ -19,7 +19,7 @@ class HomePageState extends State{
   Color color;
   int _page = 1;
   GlobalKey _bottomNavigationKey = GlobalKey();
-  Widget _widget;
+  static Widget _widget;
   @override
   void initState() {
     // TODO: implement initState

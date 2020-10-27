@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:football_manager/view/vote_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +22,10 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
         color: Colors.white,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Chi tiết đặt sân', style: TextStyle(fontSize: 25),),
+            title: Text(
+              'Chi tiết đặt sân',
+              style: TextStyle(fontSize: 25),
+            ),
             backgroundColor: main_color,
           ),
           backgroundColor: Colors.white10,
@@ -63,33 +67,52 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                             )),
                           ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Địa chỉ: ',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    // margin: EdgeInsets.only(right: 5),
-                                    // width: size.width * 0.67,
-                                    child: Text(
-                                      '$address',
+                          Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10, left: 20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Địa chỉ: ',
                                       style: TextStyle(
-                                          fontSize: 17, color: Colors.black54),
-                                      overflow: TextOverflow.fade,
+                                          fontSize: 17,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500),
                                     ),
-                                  ),
+                                    Expanded(
+                                      child: Container(
+                                        // margin: EdgeInsets.only(right: 5),
+                                        // width: size.width * 0.67,
+                                        child: Text(
+                                          '$address',
+                                          // textDirection: TextDirection.ltr,
+                                          style: TextStyle(
+                                              fontSize: 17, color: Colors.black54),
+                                          overflow: TextOverflow.visible,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only( left: 230.0, top: 32),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    MapUtils.openMap(
+                                        10.8441733, 106.7890298);
+                                  },
+                                  child: new Text("Vị trí", style: TextStyle(
+                                    decoration:TextDecoration.underline,
+                                    color: Colors.blueAccent,
+                                  )),
+                                ),
+                              ),
+                            ],
                           ),
 
                           Padding(
@@ -214,30 +237,33 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
                             ),
                           ),
 
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Center(
-                              child: Container(
-                                height: 35,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: main_color,
-                                  borderRadius: BorderRadius.circular(20),
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Center(
+                                  child: Container(
+                                    height: 35,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      color: main_color,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: FlatButton(
+                                        onPressed: () {
+                                          // MapUtils.openMap(
+                                          //     10.8441733, 106.7890298);
+
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => VotePage()));
+                                        },
+                                        child: Text(
+                                          'Đánh giá',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white),
+                                        )),
+                                  ),
                                 ),
-                                child: FlatButton(
-                                    onPressed: () {
-                                      MapUtils.openMap(10.8441733, 106.7890298);
-                                    },
-                                    child: Text(
-                                      'Vị trí',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.white),
-                                    )),
                               ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -248,6 +274,8 @@ class DetailsHistoryBookingPageState extends State<DetailsHistoryBookingPage> {
           ),
         ));
   }
+
+
 }
 
 class MapUtils {

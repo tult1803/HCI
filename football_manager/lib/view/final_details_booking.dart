@@ -9,6 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../home.dart';
+
 class FinalDetailsBooking extends StatefulWidget {
   @override
   FinalDetailsBookingState createState() => FinalDetailsBookingState();
@@ -838,6 +840,33 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     });
   }
 
+  void _showBooking(String error) async{
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Thông báo !!!" , style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500, fontSize: 25),),
+          content: Container(
+            height: 50,
+            child: Text('$error', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700, fontSize: 20),),
+          ),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Done",style: TextStyle(color: Colors.green),),
+              onPressed: () async {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    ).then((val) {
+//            *** Code Here ***
+    });
+  }
+
   void _formCheckInfo() async{
     int hourT = int.parse(startTime.substring(0,3));
     int minuteT = int.parse(startTime.substring(4,6));
@@ -911,8 +940,9 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
 
               new FlatButton(
                 child: new Text("Xác nhận",style: TextStyle(color: Colors.green),),
-                onPressed: () async {
-                  Navigator.of(context).pop();
+                onPressed: ()  async{
+                  await _showBooking('Đặt sân thành công.');
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
                 },
               ),
             ],
