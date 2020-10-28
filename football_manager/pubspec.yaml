@@ -35,6 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_datetime_picker: ^1.4.0
   flutter_rating_bar: ^3.0.1+1
+  carousel_slider: ^2.3.1
   url_launcher: ^5.7.5
   intl: ^0.16.1
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +64,10 @@ flutter:
      - images/iconDatSan.png
      - images/iconGanNhat.png
      - images/logo02.png
+     - images/qc01.jpg
+     - images/qc02.jpg
+     - images/qc03.png
+     - images/qc04.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

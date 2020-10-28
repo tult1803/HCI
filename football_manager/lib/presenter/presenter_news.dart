@@ -1,4 +1,5 @@
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:football_manager/view/details_booking.dart';
 import 'package:football_manager/view/final_details_booking.dart';
@@ -546,7 +547,43 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
   );
 }
 
+Widget slideShow(){
+  List imgList = [
+    'images/qc01.jpg', // giữ
+    'images/qc02.jpg',
+    'images/qc03.png',
+    'images/qc04.jpg', // giữ
+  ];
+  return CarouselSlider(
+    options: CarouselOptions(
+      height: 200,
+      initialPage: 0,
+      viewportFraction: 0.9,
+      // enlargeCenterPage: true,
 
+      autoPlay: true,
+      autoPlayInterval: Duration(seconds: 5),
+      autoPlayAnimationDuration: Duration(milliseconds: 3000),
+      // onPageChanged: (index, reason) {
+      //   setState(() {
+      //     _current = index;
+      //   });
+      // },
+    ),
+    items: imgList.map((e) {
+      // print('$e');
+      return Builder(
+        builder: (context) {
+          return Container(
+            width:  350,
+            margin: EdgeInsets.symmetric(horizontal: 0),
+            child: Image(image: AssetImage(e),fit: BoxFit.fill,),
+          );
+        },
+      );
+    }).toList(),
+  );
+}
 
 //
 // Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1, int price1,String s2, String ss2, String p2, int price2, String s3, String ss3, String p3, int price3){

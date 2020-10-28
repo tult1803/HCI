@@ -109,11 +109,17 @@ class NewsPageState extends State<NewsPage> {
               child: ListView(
                 padding: EdgeInsets.only(
                   left: 5,
-                  top: 20,
+                  top: 5,
                   right: 5,
                 ),
                 children: [
-                  // SizedBox(height: 10,),
+                  Container(
+                      decoration: BoxDecoration(
+                        // border: Border,
+                      ),
+                      child: slideShow()
+            ),
+                  SizedBox(height: 10,),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -156,7 +162,7 @@ class NewsPageState extends State<NewsPage> {
                               child: CategoriesScroller1(
                                   context,
                                   'Sân Phúc Lộc',
-                                  '5.0',
+                                  '4.0',
                                   '0906534119 (A.Tuấn)',
                                   100,
                                   'Sân Nam Lý',
@@ -217,14 +223,14 @@ class NewsPageState extends State<NewsPage> {
                                     : (categoryHeight - 50),
                                 child: CategoriesScroller(
                                     context,
-                                    'Sân Phúc Lộc',
+                                    'Sân Hiệp Phú',
                                     '5.0',
+                                    '0907777777 (A.Dũng)',
+                                    120,
+                                    'Sân Phúc Lộc',
+                                    '4.0',
                                     '0906534119 (A.Tuấn)',
                                     100,
-                                    'Sân Nam Lý',
-                                    '4.5',
-                                    '0956721329 (A.Tú)',
-                                    130,
                                     'Sân Tiến Phát',
                                     '3.5',
                                     '0978999999(A.Đạt)',
@@ -279,14 +285,14 @@ class NewsPageState extends State<NewsPage> {
                                     : (categoryHeight - 40),
                                 child: CategoriesScroller(
                                     context,
-                                    'Sân Hiệp Phú',
-                                    '5.0',
-                                    '0907777777 (A.Dũng)',
-                                    120,
                                     'Sân Kaly',
                                     '4.5',
                                     '0901234567 (A.Nguyên)',
                                     100,
+                                    'Sân Hiệp Phú',
+                                    '5.0',
+                                    '0907777777 (A.Dũng)',
+                                    120,
                                     'Sân Tiến Phát',
                                     '3.5',
                                     '0978999999(A.Đạt)',
@@ -335,7 +341,7 @@ class NewsPageState extends State<NewsPage> {
               ),
               Text(
                 txt,
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 11),
               ),
             ],
           ),

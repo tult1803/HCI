@@ -55,7 +55,7 @@ class DetailsBookingState extends State<DetailsBooking> {
     setState(() {
       tapped = BookingPageState.tapped;
       if (tapped == '') {
-        tapped = 'Sân Phúc Lộc   5.0';
+        tapped = 'Sân Phúc Lộc   4.0';
       }
       if (BookingPageState.day == '') {
         DateTime dateTime = DateTime.now();
@@ -76,7 +76,7 @@ class DetailsBookingState extends State<DetailsBooking> {
         price = 130;
         _widget = columSWD();
       });
-    } else if (tapped == 'Sân Phúc Lộc   5.0') {
+    } else if (tapped == 'Sân Phúc Lộc   4.0') {
       setState(() {
         address = '442 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, TP.HCM';
         phone = '0906534119';
@@ -333,7 +333,7 @@ class DetailsBookingState extends State<DetailsBooking> {
                                       'Thanh Tú',
                                       '12:19  18/10/2020',
                                       Star5(),
-                                      'Đá quên trả tiền. Lần sau trả bù !!!'),
+                                      'Tốt !!!'),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
