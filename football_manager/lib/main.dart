@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:football_manager/demo.dart';
 import 'package:football_manager/welcome_page.dart';
 
 void main() {

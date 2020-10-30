@@ -71,13 +71,22 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                       SizedBox(
                         height: 10,
                       ),
+
+                      Text(
+                        "Loại sân: 5 - 7",
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
                       Row(
                         children: [
                           Text(
                             "Giá sân:",
                             style: TextStyle(fontSize: 16, color: Colors.black54),
                           ),
-                          Text('${price1}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
+                          Text('${price1}k - 280k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
                         ],
                       ),
 
@@ -144,6 +153,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                       SizedBox(
                         height: 10,
                       ),
+
                       Text(
                         "Liên hệ: $p2",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
@@ -151,13 +161,22 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                       SizedBox(
                         height: 10,
                       ),
+
+                      Text(
+                        "Loại sân: 5 - 7 - 11",
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
                       Row(
                         children: [
                           Text(
                             "Giá sân:",
                             style: TextStyle(fontSize: 16, color: Colors.black54),
                           ),
-                          Text('${price2}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
+                          Text('${price2}k - 230k - 350k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
                         ],
                       ),
                       SizedBox(
@@ -225,6 +244,15 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                       "Liên hệ: $p3",
                       style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
+
+                    Text(
+                      "Loại sân: 5 - 7",
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+
                     SizedBox(
                       height: 10,
                     ),
@@ -234,7 +262,7 @@ Widget CategoriesScroller(BuildContext context, String s1, String ss1, String p1
                           "Giá sân:",
                           style: TextStyle(fontSize: 16, color: Colors.black54),
                         ),
-                        Text('${price3}k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
+                        Text('${price3}k - 250k/1h', style: TextStyle(fontSize: 16, color: Colors.black54),),
                       ],
                     ),
 
@@ -331,6 +359,13 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                       SizedBox(
                         height: 10,
                       ),
+                      Text(
+                        "Loại sân: 5",
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         children: [
                           Text(
@@ -415,6 +450,15 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                       SizedBox(
                         height: 10,
                       ),
+
+                      Text(
+                        "Loại sân: 7",
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+
                       Row(
                         children: [
                           Text(
@@ -498,6 +542,13 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
                     SizedBox(
                       height: 10,
                     ),
+                    Text(
+                      "Loại sân: 7",
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Text(
@@ -513,13 +564,6 @@ Widget CategoriesScroller1(BuildContext context, String s1, String ss1, String p
 
 
                       ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Loại sân: Sân 7",
-                      style: TextStyle(fontSize: 16, color: Colors.black54),
                     ),
                     SizedBox(
                       height: 10,

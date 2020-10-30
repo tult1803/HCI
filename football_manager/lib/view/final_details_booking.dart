@@ -21,8 +21,8 @@ enum SingingCharacter { money, momo, atm }
 class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   DateTime pickedDate;
   SingingCharacter character = SingingCharacter.money;
-  int checkClickDiscount, price;
-  double totalPrice;
+  int checkClickDiscount, price = 100;
+  double totalPrice = 80.000;
   DateTime _endTime;
   String btnDiscount, eror, pttt, dropdownValue = 'Sân 5';
   Widget _widget;
@@ -31,7 +31,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   String address, startTime ='', endTime='-----';
   String phone, discount = '-----', discountCheck;
   String timeOpen, priceDiscount;
-  String admin, totalTimeHours, totalTime, totalTimeMinute, demo;
+  String admin, totalTimeHours, totalTime = '', totalTimeMinute, demo;
   static String  downPrice ='0';
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
@@ -56,6 +56,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     super.initState();
     // demo = '${DateTime.now().subtract(Duration(hours: -1))}';
     demo = '${DateTime.now()}';
+    _widget = columHCI();
     pickedDate = DateTime.now();
     checkClickDiscount = 0;
     startTime = ' ${demo.substring(11, 16).trim()}';
@@ -63,6 +64,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     _getProfile();
     _getTapped();
     _checkTapped();
+
   }
 
   void _getProfile() async{
@@ -96,15 +98,17 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         timeOpen = '8h - 22h';
         admin = 'A.Tú';
         price = 130;
+        totalPrice  = 130.000;
         _widget = columnSWD();
       });
-    }else if(tapped == 'Sân Phúc Lộc   5.0'){
+    }else if(tapped == 'Sân Phúc Lộc   4.0'){
       setState(() {
         address = '442 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, TP.HCM';
         phone = '0906534119';
         timeOpen = '8h - 22h';
         admin = 'A.Tuấn';
         price = 100;
+        totalPrice  = 80.000;
         _widget = columHCI();
       });
     }else if(tapped == 'Sân Tiến Phát   3.5'){
@@ -114,6 +118,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         timeOpen = '8h - 22h';
         admin = 'A.Đạt';
         price = 110;
+        totalPrice  = 110.000;
         _widget = columPRM();
       });
     }else if(tapped == 'Sân Hiệp Phú   3.0'){
@@ -123,6 +128,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         timeOpen = '8h - 22h';
         admin = 'A.Dũng';
         price = 120;
+        totalPrice  = 120.000;
         _widget = columACC();
       });
     }else if(tapped == 'Sân Kaly   4.0'){
@@ -132,6 +138,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         timeOpen = '8h - 22h';
         admin = 'A.Nguyên';
         price = 100;
+        totalPrice  = 100.000;
         _widget = columISC();
       });
     }
@@ -141,15 +148,15 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     var size = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Đặt sân', style: TextStyle(fontSize: 25),),
-          backgroundColor: main_color,
-        ),
-        backgroundColor: Colors.white10,
-        body: SingleChildScrollView(
+      // child: Scaffold(
+      //   appBar: AppBar(
+      //     title: Text('Đặt sân', style: TextStyle(fontSize: 25),),
+      //     backgroundColor: main_color,
+      //   ),
+      //   backgroundColor: Colors.white10,
+      //   body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left:8.0, right: 8.0, top: 10),
+            padding: const EdgeInsets.only(left:0.0, right: 0.0, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -294,6 +301,28 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                                           setState(() {
                                             endTime = '${fDate.substring(10, 16)}';
                                             _endTime = DateTime.parse(fDate);
+
+                                            int hourT = int.parse(startTime.substring(0,3));
+                                            int minuteT = int.parse(startTime.substring(4,6));
+                                            String totalT = '${_endTime.subtract( Duration(hours: hourT, minutes: minuteT))}';
+                                            int dowPrice = int.parse(downPrice);
+                                            double perPrice = dowPrice/100;
+                                            double mainTime, time2, time1, perPriceDown, mainPrice;
+                                            print("Main Discount:$perPrice");
+                                            setState(() {
+                                              totalTimeHours = "${totalT.substring(11,13)}";
+                                              time1 = double.parse(totalTimeHours);
+                                              totalTimeMinute = '${totalT.substring(14,16)}';
+                                              time2 = double.parse(totalTimeMinute);
+                                              if((time1 + (time2/60)) < 1){
+                                                mainTime = 1;
+                                              }else mainTime = time1 + (time2/60);
+                                              totalTime = '${totalTimeHours}h${totalTimeMinute}p';
+                                              perPriceDown = price * perPrice;
+                                              mainPrice = price - perPriceDown;
+                                              totalPrice = mainPrice * mainTime ;
+                                            });
+
                                           });
                                         }, currentTime: DateTime.now());
                                       }),
@@ -320,7 +349,18 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                             child: Row(
                               children: [
                                 Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
-                                Text('${price}k/1h', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                                Text('${price}k' ,style: TextStyle(fontSize: 20, color: Colors.black54, decoration: TextDecoration.lineThrough),),
+                                Text('  ${80}k', style: TextStyle(fontSize: 20, color: Colors.black87, fontWeight: FontWeight.w500),),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 20),
+                            child: Row(
+                              children: [
+                                Text('Tổng tiền: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                                Text('${totalPrice.toInt()}k ($totalTime)', style: TextStyle(fontSize: 20, color: Colors.black54),),
                               ],
                             ),
                           ),
@@ -350,7 +390,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                           // ),
 
                           Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 20),
+                            padding: const EdgeInsets.only(top: 10, left: 20),
                             child:Text('Phương thức thanh toán: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                           ),
                           radioPay(),
@@ -408,8 +448,8 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     )),
               ],
             ),
-          ),
-        ),
+      //     ),
+      //   ),
       ),
     );
   }
@@ -974,7 +1014,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
             price = 140;
           }else{
             price = 300;
-            
+
           }
         });
       },

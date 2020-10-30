@@ -287,7 +287,7 @@ class NewsPageState extends State<NewsPage> {
                                     context,
                                     'Sân Kaly',
                                     '4.5',
-                                    '0901234567 (A.Nguyên)',
+                                    '0901234567 (A.Anh)',
                                     100,
                                     'Sân Hiệp Phú',
                                     '5.0',
