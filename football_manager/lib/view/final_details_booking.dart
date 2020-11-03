@@ -8,6 +8,7 @@ import 'package:football_manager/view/booking.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../home.dart';
 
@@ -19,6 +20,7 @@ class FinalDetailsBooking extends StatefulWidget {
 enum SingingCharacter { money, momo, atm }
 
 class FinalDetailsBookingState extends State<FinalDetailsBooking> {
+  CalendarController _controller;
   DateTime pickedDate;
   SingingCharacter character = SingingCharacter.money;
   int checkClickDiscount, price = 100;
@@ -31,7 +33,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   String address, startTime ='', endTime='-----';
   String phone, discount = '-----', discountCheck;
   String timeOpen, priceDiscount;
-  String admin, totalTimeHours, totalTime = '', totalTimeMinute, demo;
+  String admin, totalTimeHours, totalTime = '', totalTimeMinute, demo, demo1;
   static String  downPrice ='0';
   String note = 'Bạn chỉ được đặt sân ngoài khung giờ trên. Thân chào, quyết thắng và thân ái !!!';
   String noteB = 'Nếu đặt sân dưới 1h thì tiền sẽ tính 1h. Thân chào, quyết thắng và thân ái !!!';
@@ -56,10 +58,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
     super.initState();
     // demo = '${DateTime.now().subtract(Duration(hours: -1))}';
     demo = '${DateTime.now()}';
+    demo1 = '${DateTime.now().add(Duration(hours:  1))}';
     _widget = columHCI();
     pickedDate = DateTime.now();
     checkClickDiscount = 0;
-    startTime = ' ${demo.substring(11, 16).trim()}';
+    _controller = CalendarController();
+    startTime = ' ${demo.substring(11, 14).trim()}00';
+    _endTime = DateTime.now().add(Duration(hours:  1));
+    endTime = ' ${demo1.substring(11, 14).trim()}00';
+    // endTime = ' 23:30';
+    print("Start: $startTime - End: $endTime");
     btnDiscount = 'Nhập mã';
     _getProfile();
     _getTapped();
@@ -160,66 +168,66 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Card(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black12, width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child:Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Center(child: Text('Bảng thời gian', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 0),
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
-                          Expanded(
-                              child: Center(
-                                child: Container(
-                                    child: _widget),
-                              )),
-                        ],
-                      ),
-                    ),
-
-                       Container(
-                        width: size.width,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(width: 90,),
-                                  Icon(Icons.adjust, color: Colors.redAccent,),
-                                  Text(' Hết sân',  style: TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.w500),),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(width: 20,),
-                                  Icon(Icons.adjust, color: Colors.black54,),
-                                  Text(' Sân trống',  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-
-                    SizedBox(height: 20,),
-                  ],),),
+                // Card(
+                //   color: Colors.white,
+                //   shape: RoundedRectangleBorder(
+                //     side: BorderSide(color: Colors.black12, width: 1),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   child:Column(children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(top: 10.0),
+                //       child: Center(child: Text('Bảng thời gian', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(top: 10, left: 0),
+                //       child: Row(
+                //         // mainAxisAlignment: MainAxisAlignment.start,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           // Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                //           Expanded(
+                //               child: Center(
+                //                 child: Container(
+                //                     child: _widget),
+                //               )),
+                //         ],
+                //       ),
+                //     ),
+                //
+                //        Container(
+                //         width: size.width,
+                //         child: Row(
+                //           crossAxisAlignment: CrossAxisAlignment.center,
+                //           children: [
+                //             Padding(
+                //               padding: const EdgeInsets.only(top: 10.0),
+                //               child: Row(
+                //                 crossAxisAlignment: CrossAxisAlignment.center,
+                //                 children: [
+                //                   SizedBox(width: 90,),
+                //                   Icon(Icons.adjust, color: Colors.redAccent,),
+                //                   Text(' Hết sân',  style: TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.w500),),
+                //                 ],
+                //               ),
+                //             ),
+                //             Padding(
+                //               padding: const EdgeInsets.only(top: 10.0),
+                //               child: Row(
+                //                 crossAxisAlignment: CrossAxisAlignment.center,
+                //                 children: [
+                //                   SizedBox(width: 20,),
+                //                   Icon(Icons.adjust, color: Colors.black54,),
+                //                   Text(' Sân trống',  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),),
+                //                 ],
+                //               ),
+                //             )
+                //           ],
+                //         ),
+                //       ),
+                //
+                //     SizedBox(height: 20,),
+                //   ],),),
 
                 Card(
                     color: Colors.white,
@@ -232,104 +240,30 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(child: Text('Đặt Sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 0, left:20),
-                            child: Row(
-                              children: [
-                                Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
-                                Text('$days', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                Expanded(child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                      icon: Icon(Icons.date_range, size: 25,),
-                                      onPressed: () async{
-                                        await _pickedDate();
-                                        print("Picked Date: ${DateFormat('dd-MM-yyyy').format(pickedDate)}");
-                                        setState(() {
-                                          days = '${DateFormat('dd-MM-yyyy').format(pickedDate)}';
-                                          if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  0)))){
-                                            _widget = columHCI();
-                                          }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -1)))){
-                                            _widget = columnSWD();
-                                          }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -2)))){
-                                            _widget = columACC();
-                                          }else _widget = columPRM();
-                                        });
-                                      }))),],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Row(
-                              children: [
-                                Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
-                                Text('$startTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                Expanded(child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                      icon: Icon(Icons.timer, size: 25,),
-                                      onPressed: () {
-                                        DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date) {
-                                          String  fDate= '$date';
-                                          print('Start Time ${fDate.substring(10, 16)}');
-                                          setState(() {
-                                            startTime = '${fDate.substring(10, 16)}';
-                                          });
-                                        }, currentTime: DateTime.now());
-                                      }),
-                                )),
-                              ],
-                            ),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(top: 0, left: 20),
-                            child: Row(
-                              children: [
-                                Text('Giờ trả: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
-                                Text('$endTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
-                                Expanded(child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                      icon: Icon(Icons.timer_off, size: 25,),
-                                      onPressed: () {
-                                        DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date1) {
-                                          String  fDate= '$date1';
-                                          print('End Time ${fDate.substring(10, 16)}');
-                                          setState(() {
-                                            endTime = '${fDate.substring(10, 16)}';
-                                            _endTime = DateTime.parse(fDate);
-
-                                            int hourT = int.parse(startTime.substring(0,3));
-                                            int minuteT = int.parse(startTime.substring(4,6));
-                                            String totalT = '${_endTime.subtract( Duration(hours: hourT, minutes: minuteT))}';
-                                            int dowPrice = int.parse(downPrice);
-                                            double perPrice = dowPrice/100;
-                                            double mainTime, time2, time1, perPriceDown, mainPrice;
-                                            print("Main Discount:$perPrice");
-                                            setState(() {
-                                              totalTimeHours = "${totalT.substring(11,13)}";
-                                              time1 = double.parse(totalTimeHours);
-                                              totalTimeMinute = '${totalT.substring(14,16)}';
-                                              time2 = double.parse(totalTimeMinute);
-                                              if((time1 + (time2/60)) < 1){
-                                                mainTime = 1;
-                                              }else mainTime = time1 + (time2/60);
-                                              totalTime = '${totalTimeHours}h${totalTimeMinute}p';
-                                              perPriceDown = price * perPrice;
-                                              mainPrice = price - perPriceDown;
-                                              totalPrice = mainPrice * mainTime ;
-                                            });
-
-                                          });
-                                        }, currentTime: DateTime.now());
-                                      }),
-                                )),
-                              ],
-                            ),
-                          ),
+                          // Center(child: Text('Đặt Sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
+                      TableCalendar(
+                        startDay: DateTime.now(),
+                        initialCalendarFormat: CalendarFormat.week,
+                        calendarController: _controller,
+                        calendarStyle: CalendarStyle(
+                          todayColor: Colors.orange,
+                          selectedColor: Theme
+                              .of(context)
+                              .primaryColor,
+                        ),
+                        onDaySelected: (day, events) {
+                          setState(() {
+                            int dayNow = DateTime.now().day;
+                            if((day.day - dayNow) == 0){
+                              _widget = columHCI();
+                            }else if((day.day - dayNow) == 1){
+                              _widget = columISC();
+                            }else if((day.day - dayNow) == 2){
+                              _widget = columnSWD();
+                            }
+                          });
+                        },
+                      ),
 
                           Padding(
                             padding: const EdgeInsets.only(top: 0, left: 20),
@@ -337,8 +271,8 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                               children: [
                                 Text('Loại sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                                 Expanded(child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: optionF()
+                                    alignment: Alignment.centerLeft,
+                                    child: optionF()
                                 )),
                               ],
                             ),
@@ -354,13 +288,171 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                               ],
                             ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 0, left:20),
+                          //   child: Row(
+                          //     children: [
+                          //       Text('Ngày đặt: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                          //       Text('$days', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          //       Expanded(child: Container(
+                          //         alignment: Alignment.centerLeft,
+                          //         child: IconButton(
+                          //             icon: Icon(Icons.date_range, size: 25,),
+                          //             onPressed: () async{
+                          //               await _pickedDate();
+                          //               print("Picked Date: ${DateFormat('dd-MM-yyyy').format(pickedDate)}");
+                          //               setState(() {
+                          //                 days = '${DateFormat('dd-MM-yyyy').format(pickedDate)}';
+                          //                 if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  0)))){
+                          //                   _widget = columHCI();
+                          //                 }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -1)))){
+                          //                   _widget = columnSWD();
+                          //                 }else if(pickedDate.isBefore(DateTime.now().subtract(Duration(days:  -2)))){
+                          //                   _widget = columACC();
+                          //                 }else _widget = columPRM();
+                          //               });
+                          //             }))),],
+                          //   ),
+                          // ),
+
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 0, left: 20),
+                          //   child: Row(
+                          //     children: [
+                          //       Text('Giờ nhận: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                          //       Text('$startTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          //       Expanded(child: Container(
+                          //         alignment: Alignment.centerLeft,
+                          //         child: IconButton(
+                          //             icon: Icon(Icons.timer, size: 25,),
+                          //             onPressed: () {
+                          //               DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date) {
+                          //                 String  fDate= '$date';
+                          //                 print('Start Time ${fDate.substring(10, 16)}');
+                          //                 setState(() {
+                          //                   startTime = '${fDate.substring(10, 16)}';
+                          //                 });
+                          //               }, currentTime: DateTime.now());
+                          //             }),
+                          //       )),
+                          //     ],
+                          //   ),
+                          // ),
+                          //
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 0, left: 20),
+                          //   child: Row(
+                          //     children: [
+                          //       Text('Giờ trả: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
+                          //       Text('$endTime', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                          //       Expanded(child: Container(
+                          //         alignment: Alignment.centerLeft,
+                          //         child: IconButton(
+                          //             icon: Icon(Icons.timer_off, size: 25,),
+                          //             onPressed: () {
+                          //               DatePicker.showTime12hPicker(context, showTitleActions: true, onConfirm: (date1) {
+                          //                 String  fDate= '$date1';
+                          //                 print('End Time ${fDate.substring(10, 16)}');
+                          //                 setState(() {
+                          //                   endTime = '${fDate.substring(10, 16)}';
+                          //                   _endTime = DateTime.parse(fDate);
+                          //
+                          //                   int hourT = int.parse(startTime.substring(0,3));
+                          //                   int minuteT = int.parse(startTime.substring(4,6));
+                          //                   String totalT = '${_endTime.subtract( Duration(hours: hourT, minutes: minuteT))}';
+                          //                   int dowPrice = int.parse(downPrice);
+                          //                   double perPrice = dowPrice/100;
+                          //                   double mainTime, time2, time1, perPriceDown, mainPrice;
+                          //                   print("Main Discount:$perPrice");
+                          //                   setState(() {
+                          //                     totalTimeHours = "${totalT.substring(11,13)}";
+                          //                     time1 = double.parse(totalTimeHours);
+                          //                     totalTimeMinute = '${totalT.substring(14,16)}';
+                          //                     time2 = double.parse(totalTimeMinute);
+                          //                     if((time1 + (time2/60)) < 1){
+                          //                       mainTime = 1;
+                          //                     }else mainTime = time1 + (time2/60);
+                          //                     totalTime = '${totalTimeHours}h${totalTimeMinute}p';
+                          //                     perPriceDown = price * perPrice;
+                          //                     mainPrice = price - perPriceDown;
+                          //                     totalPrice = mainPrice * mainTime ;
+                          //                   });
+                          //
+                          //                 });
+                          //               }, currentTime: DateTime.now());
+                          //             }),
+                          //       )),
+                          //     ],
+                          //   ),
+                          // ),
+
+                      Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 0),
+                              child: Row(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Text('Sân được đặt lúc: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),),
+                                  Expanded(
+                                      child: Center(
+                                        child: Container(
+                                            child: _widget),
+                                      )),
+                                ],
+                              ),
+                            ),
+
+                               Container(
+                                width: size.width,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 20,),
+                                          Icon(Icons.adjust, color: Colors.black54,),
+                                          Text(' Sân trống',  style: TextStyle(color: Colors.black54, fontSize: 16, fontWeight: FontWeight.w500),),
+                                        ],
+                                      ),
+                                    ),
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 20,),
+                                          Icon(Icons.adjust, color: main_color,),
+                                          Text(' Đang chọn',  style: TextStyle(color: main_color, fontSize: 16, fontWeight: FontWeight.w500),),
+                                        ],
+                                      ),
+                                    ),
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(width: 20,),
+                                          Icon(Icons.adjust, color: Colors.redAccent,),
+                                          Text(' Hết sân',  style: TextStyle(color: Colors.redAccent, fontSize: 16, fontWeight: FontWeight.w500),),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
 
                           Padding(
                             padding: const EdgeInsets.only(top: 10, left: 20),
                             child: Row(
                               children: [
                                 Text('Tổng tiền: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
-                                Text('${totalPrice.toInt()}k ($totalTime)', style: TextStyle(fontSize: 20, color: Colors.black54),),
+                                Text('${totalPrice.toInt()}k', style: TextStyle(fontSize: 20, color: Colors.black54),),
                               ],
                             ),
                           ),
@@ -425,23 +517,23 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20),
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
-                                Expanded(
-                                  child: Container(
-                                    // margin: EdgeInsets.only(right: 5),
-                                    // width: size.width * 0.67,
-                                    child: Text('$noteB', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // SizedBox(height: 10,),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 10, left: 20),
+                          //   child: Row(
+                          //     // mainAxisAlignment: MainAxisAlignment.start,
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       Text('Lưu ý: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),),
+                          //       Expanded(
+                          //         child: Container(
+                          //           // margin: EdgeInsets.only(right: 5),
+                          //           // width: size.width * 0.67,
+                          //           child: Text('$noteB', style: TextStyle(fontSize: 20, color: Colors.black54),overflow: TextOverflow.fade,),),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           SizedBox(height: 20,),
                         ],
                       ),
@@ -615,142 +707,254 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   }
   Widget columnSWD(){
     return Container(
-      width: 200,
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          containerTime('8h', Colors.redAccent),
-          containerTime('9h', Colors.redAccent),
-          containerTime('10h', Colors.black54),
-          containerTime('11h', Colors.black54),
-          containerTime('12h', Colors.black54),
-          containerTime('13h', Colors.black54),
-          containerTime('14h', Colors.black54),
-          containerTime('15h', Colors.black54),
-          containerTime('16h', Colors.black54),
-          containerTime('17h', Colors.black54),
-          containerTime('18h', Colors.black54),
-          containerTime('19h', Colors.black54),
-          containerTime('20h', Colors.redAccent),
-          containerTime('21h', Colors.redAccent),
-          containerTime('22h', Colors.redAccent),
-          containerTime('  ', Colors.black54),
-        ],
-      ),
-    );
-  }
-
-  Widget columHCI(){
-      return Container(
-        width: 200,
+      width: 400,
+      child: Center(
         child: Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            containerTime('8h', Colors.black54),
-            containerTime('9h', Colors.black54),
-            containerTime('10h', Colors.redAccent),
-            containerTime('11h', Colors.redAccent),
-            containerTime('12h', Colors.black54),
-            containerTime('13h', Colors.black54),
-            containerTime('14h', Colors.black54),
-            containerTime('15h', Colors.black54),
-            containerTime('16h', Colors.black54),
-            containerTime('17h', Colors.redAccent),
-            containerTime('18h', Colors.redAccent),
-            containerTime('19h', Colors.black54),
-            containerTime('20h', Colors.black54),
-            containerTime('21h', Colors.black54),
-            containerTime('22h', Colors.black54),
+            containerTime('8h - 9h', Colors.black54),
+            containerTime('9h - 10h', Colors.black54),
+            containerTime('10h - 11h', Colors.black54),
+            containerTime('11h - 12h', Colors.black54),
+            containerTime('12h - 13h', Colors.black54),
+            containerTime('13h - 14h', Colors.black54),
+            containerTime('14h - 15h', Colors.black54),
+            containerTime('15h - 16h', Colors.black54),
+            containerTime('16h - 17h', Colors.black54),
+            containerTime('17h - 18h', Colors.black54),
+            containerTime('18h - 19h', Colors.black54),
+            containerTime('19h - 20h', Colors.black54),
+            containerTime('20h - 21h', Colors.black54),
+            containerTime('21h - 22h', Colors.black54),
+            containerTime('  ', Colors.black54),
             containerTime('  ', Colors.black54),
           ],
+        ),
+      ),
+    );
+  }
+  Color color1 = Colors.black54, color2 = Colors.black54, color3 = Colors.black54, color4 = Colors.black54, color7 = Colors.black54, color5 = Colors.black54, color6 = Colors.black54, color8 = Colors.black54, color9 = Colors.black54, color10 = Colors.black54;
+  Widget columHCI(){
+      return Container(
+        width: 400,
+        child: Center(
+          child: Wrap(
+
+            // crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                    if(color1 == Colors.black54){
+                        color1 = main_color;
+                        _widget = columHCI();
+                    }else{
+                      color1 = Colors.black54;
+                      _widget = columHCI();
+                    }});},
+                  child: containerTime('8h - 9h', color1)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color2 == Colors.black54){
+                        color2 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color2 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('9h - 10h', color2)),
+              containerTime('10h - 11h', Colors.redAccent),
+              containerTime('11h - 12h', Colors.redAccent),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color3 == Colors.black54){
+                        color3 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color3 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('12h - 13h', color3)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color4 == Colors.black54){
+                        color4 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color4 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('13h - 14h', color4)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color5 == Colors.black54){
+                        color5= main_color;
+                        _widget = columHCI();
+                      }else{
+                        color5 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('14h - 15h', color5)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color6 == Colors.black54){
+                        color6 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color6 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('15h - 16h', color6)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color7 == Colors.black54){
+                        color7 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color7 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('16h - 17h', color7)),
+              containerTime('17h - 18h', Colors.redAccent),
+              containerTime('18h - 19h', Colors.redAccent),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color8 == Colors.black54){
+                        color8 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color8 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('19h - 20h', color8)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color9 == Colors.black54){
+                        color9 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color9 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('20h - 21h', color9)),
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if(color10 == Colors.black54){
+                        color10 = main_color;
+                        _widget = columHCI();
+                      }else{
+                        color10 = Colors.black54;
+                        _widget = columHCI();
+                      }});},
+                  child: containerTime('21h - 22h', color10)),
+              containerTime('  ', Colors.black54),
+              containerTime('  ', Colors.black54),
+            ],
+          ),
         ),
       );
   }
 
   Widget containerTime(String time, Color color){
-   return Container(
-      height: 30,width: 50,
-      decoration: BoxDecoration(
-        border: Border.all(color: color),
-      ),
-      child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
-    );
+   return  Container(
+        height: 30,width: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: color),
+        ),
+        child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
+
+   );
   }
   Widget columISC(){
     return Container(
-      width: 200,
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          containerTime('8h', Colors.black54),
-          containerTime('9h', Colors.black54),
-          containerTime('10h', Colors.black54),
-          containerTime('11h', Colors.black54),
-          containerTime('12h', Colors.black54),
-          containerTime('13h', Colors.black54),
-          containerTime('14h', Colors.black54),
-          containerTime('15h', Colors.black54),
-          containerTime('16h', Colors.black54),
-          containerTime('17h', Colors.black54),
-          containerTime('18h', Colors.black54),
-          containerTime('19h', Colors.black54),
-          containerTime('20h', Colors.black54),
-          containerTime('21h', Colors.black54),
-          containerTime('22h', Colors.black54),
-          containerTime('  ', Colors.black54),
-        ],
+      width: 400,
+      child: Center(
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            containerTime('8h - 9h', Colors.redAccent),
+            containerTime('9h - 10h', Colors.redAccent),
+            containerTime('10h - 11h', Colors.black54),
+            containerTime('11h - 12h', Colors.black54),
+            containerTime('12h - 13h', Colors.black54),
+            containerTime('13h - 14h', Colors.black54),
+            containerTime('14h - 15h', Colors.black54),
+            containerTime('15h - 16h', Colors.black54),
+            containerTime('16h - 17h', Colors.black54),
+            containerTime('17h - 18h', Colors.redAccent),
+            containerTime('18h - 19h', Colors.redAccent),
+            containerTime('19h - 20h', Colors.black54),
+            containerTime('20h - 21h', Colors.black54),
+            containerTime('21h - 22h', Colors.black54),
+            containerTime('  ', Colors.black54),
+            containerTime('  ', Colors.black54),
+          ],
+        ),
       ),
     );
   }
   Widget columPRM(){
     return Container(
-      width: 200,
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          containerTime('8h', Colors.black54),
-          containerTime('9h', Colors.black54),
-          containerTime('10h', Colors.black54),
-          containerTime('11h', Colors.black54),
-          containerTime('12h', Colors.black54),
-          containerTime('13h', Colors.black54),
-          containerTime('14h', Colors.black54),
-          containerTime('15h', Colors.black54),
-          containerTime('16h', Colors.black54),
-          containerTime('17h', Colors.black54),
-          containerTime('18h', Colors.black54),
-          containerTime('19h', Colors.black54),
-          containerTime('20h', Colors.black54),
-          containerTime('21h', Colors.black54),
-          containerTime('22h', Colors.black54),
-          containerTime('  ', Colors.black54),
-        ],
+      width: 400,
+      child: Center(
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            containerTime('8h - 9h', Colors.black54),
+            containerTime('9h - 10h', Colors.black54),
+            containerTime('10h - 11h', Colors.black54),
+            containerTime('11h - 12h', Colors.black54),
+            containerTime('12h - 13h', Colors.black54),
+            containerTime('13h - 14h', Colors.black54),
+            containerTime('14h - 15h', Colors.black54),
+            containerTime('15h - 16h', Colors.redAccent),
+            containerTime('16h - 17h', Colors.redAccent),
+            containerTime('17h - 18h', Colors.redAccent),
+            containerTime('18h - 19h', Colors.redAccent),
+            containerTime('19h - 20h', Colors.black54),
+            containerTime('20h - 21h', Colors.black54),
+            containerTime('21h - 22h', Colors.black54),
+            containerTime('  ', Colors.black54),
+            containerTime('  ', Colors.black54),
+          ],
+        ),
       ),
     );
   }
   Widget columACC(){
     return Container(
-      width: 200,
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          containerTime('8h', Colors.black54),
-          containerTime('9h', Colors.black54),
-          containerTime('10h', Colors.redAccent),
-          containerTime('11h', Colors.redAccent),
-          containerTime('12h', Colors.black54),
-          containerTime('13h', Colors.black54),
-          containerTime('14h', Colors.black54),
-          containerTime('15h', Colors.black54),
-          containerTime('16h', Colors.black54),
-          containerTime('17h', Colors.redAccent),
-          containerTime('18h', Colors.redAccent),
-          containerTime('19h', Colors.redAccent),
-          containerTime('20h', Colors.redAccent),
-          containerTime('21h', Colors.redAccent),
-          containerTime('22h', Colors.redAccent),
-          containerTime('  ', Colors.black54),
-        ],
+      width: 400,
+      child: Center(
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            containerTime('8h - 9h', Colors.black54),
+            containerTime('9h - 10h', Colors.black54),
+            containerTime('10h - 11h', Colors.black54),
+            containerTime('11h - 12h', Colors.black54),
+            containerTime('12h - 13h', Colors.black54),
+            containerTime('13h - 14h', Colors.black54),
+            containerTime('14h - 15h', Colors.black54),
+            containerTime('15h - 16h', Colors.black54),
+            containerTime('16h - 17h', Colors.black54),
+            containerTime('17h - 18h', Colors.black54),
+            containerTime('18h - 19h', Colors.black54),
+            containerTime('19h - 20h', Colors.black54),
+            containerTime('20h - 21h', Colors.black54),
+            containerTime('21h - 22h', Colors.black54),
+            containerTime('  ', Colors.black54),
+            containerTime('  ', Colors.black54),
+          ],
+        ),
       ),
     );
   }
@@ -1010,11 +1214,13 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
           dropdownValue = newValue;
           if(dropdownValue == 'Sân 5'){
             price = 100;
+            _widget = columHCI();
           }else if(dropdownValue == 'Sân 7'){
             price = 140;
+            _widget = columACC();
           }else{
             price = 300;
-
+            _widget = columPRM();
           }
         });
       },

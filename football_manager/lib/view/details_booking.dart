@@ -288,21 +288,26 @@ class DetailsBookingState extends State<DetailsBooking> {
                                             color: _colorPicked1,
                                           )),
                                     ),
-                                    SizedBox(
-                                      width: 15,
+                                    Expanded(
+                                      child: SizedBox(
+                                        // width: 15,
+                                      ),
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        MapUtils.openMap(
-                                            10.8441733, 106.7890298);
-                                      },
-                                      child: new Text("Vị trí",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            color: Colors.blueAccent,
-                                          )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 40.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          MapUtils.openMap(
+                                              10.8441733, 106.7890298);
+                                        },
+                                        child: new Text("Vị trí",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: Colors.blueAccent,
+                                            )),
+                                      ),
                                     ),
                                   ],
                                 ),
