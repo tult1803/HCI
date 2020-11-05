@@ -58,12 +58,24 @@ class BookingPageState extends State<BookingPage> {
               Container(
                 color: Colors.white70,
                 child: TableCalendar(
+                  availableCalendarFormats: const {
+                    CalendarFormat.month: '',
+                    CalendarFormat.week: '',
+                  },
+                  headerStyle: HeaderStyle(
+                    centerHeaderTitle: true,
+                    formatButtonVisible: false,
+
+                  ),
+                  startDay: DateTime.now(),
                   startingDayOfWeek: StartingDayOfWeek.monday,
                   initialCalendarFormat: CalendarFormat.week,
                   calendarController: _controller,
                   events: _events,
                   onDaySelected: _onDaySelected,
                   calendarStyle: CalendarStyle(
+                    markersColor: Colors.white10,
+                    outsideDaysVisible: false,
                     todayColor: Colors.lightGreen,
                     selectedColor: Theme.of(context).primaryColor,
                   ),

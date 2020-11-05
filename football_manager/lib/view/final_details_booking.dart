@@ -23,9 +23,10 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   CalendarController _controller;
   DateTime pickedDate;
   SingingCharacter character = SingingCharacter.money;
-  int checkClickDiscount, price = 100;
-  double totalPrice = 80.000;
+  int checkClickDiscount, price = 100, priceFinal, count = 0;
+  double totalPrice = 00.000;
   DateTime _endTime;
+  bool check = false;
   String btnDiscount, eror, pttt, dropdownValue = 'Sân 5';
   Widget _widget;
   String tapped = null;
@@ -56,6 +57,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    priceFinal = 80;
     // demo = '${DateTime.now().subtract(Duration(hours: -1))}';
     demo = '${DateTime.now()}';
     demo1 = '${DateTime.now().add(Duration(hours:  1))}';
@@ -243,6 +245,10 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                           // Center(child: Text('Đặt Sân', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),)),
                       TableCalendar(
                         startDay: DateTime.now(),
+                        headerStyle: HeaderStyle(
+                          centerHeaderTitle: true,
+                          formatButtonVisible: false,
+                        ),
                         initialCalendarFormat: CalendarFormat.week,
                         calendarController: _controller,
                         calendarStyle: CalendarStyle(
@@ -284,7 +290,7 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                               children: [
                                 Text('Giá sân: ', style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400),),
                                 Text('${price}k' ,style: TextStyle(fontSize: 20, color: Colors.black54, decoration: TextDecoration.lineThrough),),
-                                Text('  ${80}k', style: TextStyle(fontSize: 20, color: Colors.black87, fontWeight: FontWeight.w500),),
+                                Text('  ${priceFinal}k', style: TextStyle(fontSize: 20, color: Colors.black87, fontWeight: FontWeight.w500),),
                               ],
                             ),
                           ),
@@ -446,6 +452,8 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                                   ],
                                 ),
                               ),
+
+                          checkMi(),
 
                           Padding(
                             padding: const EdgeInsets.only(top: 10, left: 20),
@@ -747,9 +755,17 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                     if(color1 == Colors.black54){
                         color1 = main_color;
+                        check = true;
+                        count += 1;
+                        totalPrice += 80;
+                        checkMi();
                         _widget = columHCI();
                     }else{
+                      check = false;
                       color1 = Colors.black54;
+                      count -= 1;
+                      totalPrice -= 80;
+                      checkMi();
                       _widget = columHCI();
                     }});},
                   child: containerTime('8h - 9h', color1)),
@@ -757,10 +773,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color2 == Colors.black54){
+                        totalPrice += 80;
+                        check = false;
+                        checkMi();
                         color2 = main_color;
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color2 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('9h - 10h', color2)),
@@ -770,10 +792,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color3 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color3 = main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color3 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('12h - 13h', color3)),
@@ -781,10 +809,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color4 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color4 = main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color4 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('13h - 14h', color4)),
@@ -792,10 +826,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color5 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color5= main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color5 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('14h - 15h', color5)),
@@ -803,10 +843,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color6 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color6 = main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color6 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('15h - 16h', color6)),
@@ -814,10 +860,15 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color7 == Colors.black54){
+                        totalPrice += 80;
                         color7 = main_color;
+                        check = false;checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color7 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('16h - 17h', color7)),
@@ -827,10 +878,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color8 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color8 = main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color8 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('19h - 20h', color8)),
@@ -838,10 +895,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color9 == Colors.black54){
+                        totalPrice += 80;
+                        check = true;
                         color9 = main_color;
+                        checkMi();
                         _widget = columHCI();
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color9 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('20h - 21h', color9)),
@@ -849,10 +912,16 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                   onTap: () {
                     setState(() {
                       if(color10 == Colors.black54){
+                        totalPrice += 80;
                         color10 = main_color;
+                        check = false;checkMi();
                         _widget = columHCI();
+                        print('$count');
                       }else{
+                        totalPrice -= 80;
+                        check = false;
                         color10 = Colors.black54;
+                        checkMi();
                         _widget = columHCI();
                       }});},
                   child: containerTime('21h - 22h', color10)),
@@ -863,15 +932,50 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
         ),
       );
   }
+bool checkBoxValue = false;
+  Widget checkMi(){
+    if(check == true) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20),
+        child: Row(
+          children: [
+            Text('Thêm thời gian: ', style: TextStyle(fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.w400),),
+            Text('+30p',
+              style: TextStyle(fontSize: 20, color: Colors.black54),),
+            Checkbox(
+                value: checkBoxValue,
+                activeColor: Colors.green,
+                onChanged:(bool newValue){
+                  setState(() {
+                    checkBoxValue = newValue;
+                    if(checkBoxValue == true){
+                      totalPrice += 40;
+                    }else totalPrice -= 40;
+                  });
+                  Text('Remember me');
+                }),
+          ],
+        ),
+      );
+    }else{
+      return Container(height: 5,);
+    }
+  }
 
   Widget containerTime(String time, Color color){
-   return  Container(
-        height: 30,width: 80,
-        decoration: BoxDecoration(
-          border: Border.all(color: color),
-        ),
-        child: Center(child: Text('$time', style: TextStyle(color: color, fontWeight: FontWeight.w700),)),
+   return  Padding(
+     padding: const EdgeInsets.all(2.0),
+     child: Container(
+          height: 50,width: 80,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: color),
+          ),
+          child: Center(child: Text('$time', style: TextStyle(fontSize: 15,color: color, fontWeight: FontWeight.w700),)),
 
+     ),
    );
   }
   Widget columISC(){
@@ -1126,9 +1230,15 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
       time2 = double.parse(totalTimeMinute);
       if((time1 + (time2/60)) < 1){
         mainTime = 1;
-      }else mainTime = time1 + (time2/60);
+      // }else mainTime = time1 + (time2/60);
+      }else {
+
+        mainTime = (totalPrice/80);
+      }
       print("Time chinh:$mainTime");
-      totalTime = '${totalTimeHours}h${totalTimeMinute}p';
+      // totalTime = '${totalTimeHours}h${totalTimeMinute}p';
+      // totalTime = '${totalTimeHours}h00p';
+      totalTime = '${(totalPrice/80).toInt()}h00p';
       perPriceDown = price * perPrice;
       print("Giá được giảm:$perPriceDown");
       mainPrice = price - perPriceDown;
@@ -1156,8 +1266,9 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     _formPadding('SĐT', '0967566774'),
                     _formPadding('Sân', tapped.substring(0, 13).trim()),
                     _formPadding('Ngày đặt', days),
-                    _formPadding('Giờ nhận sân', startTime),
-                    _formPadding('Giờ trả sân', endTime),
+                    // _formPadding('Giờ nhận sân', startTime),
+                    // _formPadding('Giờ trả sân', endTime),
+                    _formPadding('Slot', '13h - 14h'),
                     _formPadding('Loại sân', '$dropdownValue'),
                     _formPadding('PTTT ', pttt),
                     SizedBox(height: 10,),
@@ -1214,12 +1325,15 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
           dropdownValue = newValue;
           if(dropdownValue == 'Sân 5'){
             price = 100;
+            priceFinal = 80;
             _widget = columHCI();
           }else if(dropdownValue == 'Sân 7'){
             price = 140;
+            priceFinal = 112;
             _widget = columACC();
           }else{
             price = 300;
+            priceFinal = 240;
             _widget = columPRM();
           }
         });
