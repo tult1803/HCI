@@ -755,14 +755,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                     if(color1 == Colors.black54){
                         color1 = main_color;
-                        check = true;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         count += 1;
                         totalPrice += 80;
                         checkMi();
                         _widget = columHCI();
                     }else{
-                      check = false;
                       color1 = Colors.black54;
+                      if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                        check = false;
+                      }else{
+                        check = true;
+                      }
                       count -= 1;
                       totalPrice -= 80;
                       checkMi();
@@ -782,6 +790,11 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                         totalPrice -= 80;
                         check = false;
                         color2 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -793,14 +806,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color3 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color3 = main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color3 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -810,14 +831,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color4 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color4 = main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color4 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -827,14 +856,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color5 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color5= main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color5 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -844,14 +881,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color6 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color6 = main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color6 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -868,6 +913,11 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                         totalPrice -= 80;
                         check = false;
                         color7 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -879,14 +929,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color8 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color8 = main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color8 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -896,14 +954,22 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                     setState(() {
                       if(color9 == Colors.black54){
                         totalPrice += 80;
-                        check = true;
                         color9 = main_color;
+                        if(color2 == Colors.black54 && color7 == Colors.black54 && color10 == Colors.black54){
+                          check = true;
+                        }else{
+                          check = false;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }else{
                         totalPrice -= 80;
-                        check = false;
                         color9 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},
@@ -921,6 +987,11 @@ class FinalDetailsBookingState extends State<FinalDetailsBooking> {
                         totalPrice -= 80;
                         check = false;
                         color10 = Colors.black54;
+                        if(color1 == Colors.black54 && color4 == Colors.black54 && color3 == Colors.black54 && color5 == Colors.black54 && color6 == Colors.black54 && color9 == Colors.black54 && color8 == Colors.black54){
+                          check = false;
+                        }else{
+                          check = true;
+                        }
                         checkMi();
                         _widget = columHCI();
                       }});},

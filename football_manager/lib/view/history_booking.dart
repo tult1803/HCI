@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:football_manager/url/url.dart';
+import 'package:football_manager/view/DangXuLy.dart';
+import 'package:football_manager/view/Huy.dart';
 import 'package:football_manager/view/details_history.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,6 +37,18 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                 // SizedBox(height: 10,),
                 historyCard(
                     context,
+                    'Hiệp Phú',
+                    '30-10-2020  17:30',
+                    Colors.orangeAccent,
+                    Icon(
+                      Icons.access_time_rounded,
+                      color: Colors.orangeAccent,
+                      size: 50,
+                    ),
+                    'Chờ nhận sân', WaitHistoryBookingPage()),
+
+                historyCard(
+                    context,
                     'Phúc Lộc',
                     '23-10-2020  14:00',
                     Color.fromARGB(255, 2, 177, 79),
@@ -43,7 +57,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                       color: Color.fromARGB(255, 2, 177, 79),
                       size: 50,
                     ),
-                    'Hoàn tất'),
+                    'Hoàn tất', DetailsHistoryBookingPage()),
                 historyCard(
                     context,
                     'Phúc Lộc',
@@ -54,7 +68,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                       color: Color.fromARGB(255, 2, 177, 79),
                       size: 50,
                     ),
-                    'Hoàn tất'),
+                    'Hoàn tất', DetailsHistoryBookingPage()),
                 historyCard(
                     context,
                     'Nam Lý',
@@ -65,7 +79,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
                       color: Colors.redAccent,
                       size: 50,
                     ),
-                    'Hủy'),
+                    'Hủy', DeleteHistoryBookingPage()),
               ],
             ),
           ),
@@ -73,8 +87,7 @@ class HistoryBookingPageState extends State<HistoryBookingPage> {
   }
 }
 
-Widget historyCard(BuildContext context, String name, String time, Color color,
-    Icon icon, String status) {
+Widget historyCard(BuildContext context, String name, String time, Color color, Icon icon, String status, Widget widget) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.only(top: 10.0),
@@ -100,7 +113,7 @@ Widget historyCard(BuildContext context, String name, String time, Color color,
           ),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => DetailsHistoryBookingPage()));
+                builder: (context) => widget));
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
